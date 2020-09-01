@@ -20,7 +20,7 @@ populatePage();
 function populatePage() {
   atRiskPets();
   breedPop();
-};
+}
 
 // Creates images for at risk dogs to add to front page on load
 function atRiskPets() {
@@ -35,11 +35,15 @@ function atRiskPets() {
     console.dir(response);
     for (let i = 0; i < response.data.length; i++) {
       petImg = response.data[i].attributes.pictureThumbnailUrl;
+      imgLi = $("<li></li>");
+      imgLi.addClass("uk-width-1-6");
       petImgEl = $("<img>");
       petImgEl.attr("src", petImg);
-      $(".at-risk").append(petImgEl);
+
+      $(".at-risk").append(imgLi);
+      imgLi.append(petImgEl);
     }
-  })
+  });
 }
 // populates breed selection options
 function breedPop() {
@@ -58,7 +62,7 @@ function breedPop() {
       breedOpEl.text(breedOp);
       $(".breed-select").append(breedOpEl);
     }
-  })
+  });
 }
 
 
