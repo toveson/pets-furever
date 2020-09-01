@@ -1,38 +1,58 @@
+const rgUrl = "https://test1-api.rescuegroups.org/v5/";
+const rgKey = "k4QortUC";
 
-$(document).ready(function () {
-  $('.carousel').carousel();
-});
+// search variables
+let breedSelect;
+let sizeSelect;
+let sexSelect;
+let ageSelect;
+let houseTrainedSelect;
+let okCatsSelect;
+let okDogsSelect;
+let okKidsSelect;
+let colorsSelect;
 
+// image variables
+let petImg;
 
-$('.carousel.carousel-slider').carousel({
-  fullWidth: true
-});
+popPageData();
 
-$(document).ready(function () {
-  $('.fixed-action-btn').floatingActionButton();
-});
-
-
-// sliders
-var slider = document.getElementById('test-slider');
-noUiSlider.create(slider, {
-  start: [20, 80],
-  connect: true,
-  step: 1,
-  orientation: 'horizontal', // 'horizontal' or 'vertical'
-  range: {
-    'min': 0,
-    'max': 100
+// Populates images of pets
+function popPageData() {
+  $.ajax({
+    url: rgUrl + "public/animals/search/available/dogs",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/vnd.api+json",
+      "Authorization": rgKey,
+    },
+    data: {
+      "fieldName": "species.singular",
+      "operation": "equals",
+      "criteria": "Dog"
   },
-  format: wNumb({
-    decimals: 0
-  })
-});
+  }).then(function(response) {
+    atRiskImg(response);
+    console.dir(response);
+  });
+}
 
+function atRiskImg(response) {
+  for (let i = 0; i < response.data.length; i++) {
+    petImg = response.data[i].attributes.pictureThumbnailUrl;
+    petImgEl = $("<img>");
+    petImgEl.attr("src", petImg);
+    $(".at-risk").append(petImgEl);
+    console.log(petImg);
+  }
+}
 
+//function to create carousel images
+// takes dogs that are close to euthanization and creates image elements for them 
 
-// var instance = M.FormSelect.getInstance(elem);
+// function to get user selections
+  // use click listeners on each selection and stores in the variables
 
-$(document).ready(function () {
-  $('select').formSelect();
-});
+//function to fetch API data based on user selections
+
+//function to populate html elements based on reponse

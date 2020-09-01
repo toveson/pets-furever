@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <!-- navbar -->
+    <!-- Navbar with Logo and Title -->
     <nav class="uk-navbar-container uk-margin ">
         <div class="uk-navbar-left uk-background-primary">
 
@@ -34,43 +34,20 @@
             </ul>
 
             <div class="uk-navbar-item">
-                <div>Some <a href="#">Link</a>
-                </div> -->
-
-
+                <div>Some <a href="#">Link</a></div>
+            </div> -->
         </div>
     </nav>
 
+    <!-- Adopt a pet today! -->
+
 
     <!-- cards to promote pets -->
-    <div class="uk-child-width-expand@s uk-text-center" uk-grid>
-        <div class="uk-card uk-card-default uk-card-body uk-width-1-5">
-            <h3 class="uk-card-title">pet name</h3>
-            <p>info about pet</p>
-        </div>
-        <div class="uk-card uk-card-default uk-card-body uk-width-1-5">
-            <h3 class="uk-card-title">pet name</h3>
-            <p>info about pet</p>
-        </div>
-        <div class="uk-card uk-card-default uk-card-body uk-width-1-5">
-            <h3 class="uk-card-title">pet name</h3>
-            <p>info about pet</p>
-        </div>
-        <div class="uk-card uk-card-default uk-card-body uk-width-1-5">
-            <h3 class="uk-card-title">pet name</h3>
-            <p>info about pet</p>
-        </div>
-        <div class="uk-card uk-card-default uk-card-body uk-width-1-5">
-            <h3 class="uk-card-title">pet name</h3>
-            <p>info about pet</p>
-        </div>
+    <div>
+        <ul class=""uk-slider-items uk-child-width-1-2@s uk-child-width-1-3@m uk-grid">
+            <li class="at-risk"></li>
+        </ul>
     </div>
-
-
-
-
-
-
 
     <!-- search form -->
     <div class="uk-container uk-container-small">
@@ -80,7 +57,7 @@
                 <legend class="uk-legend">Find a pet!</legend>
 
                 <div class="uk-margin">
-                    <select class="uk-select">
+                    <select class="uk-select breed-select">
                         <!-- these can be breeds made from ajax response -->
                         <option>Click for breeds</option>
                         <option>Option 02</option>
@@ -93,7 +70,7 @@
                     <label><input class="uk-checkbox" type="checkbox"> B</label>
                 </div>
                 <!-- check boxes for sex -->
-                <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid gender-select">
                     <p>Pick one or both</p>
                     <label><input class="uk-checkbox" type="checkbox"> female</label>
                     <label><input class="uk-checkbox" type="checkbox"> male</label>
@@ -117,19 +94,6 @@
             </fieldset>
         </form>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     <!-- about us menu -->
     <div id="offcanvas-slide" uk-offcanvas>
@@ -153,8 +117,10 @@
 
 
     <!-- uikit js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+    <script src="./pets-furever/script.js"></script>
 </body>
 
 </html>
