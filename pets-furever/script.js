@@ -1,4 +1,4 @@
-const rgUrl = "https://test1-api.rescuegroups.org/v5/";
+const rgUrl = "https://test1-api.rescuegroups.org/v5/public/animals/";
 const rgKey = "k4QortUC";
 
 // search variables
@@ -15,13 +15,17 @@ let colorsSelect;
 // image variables
 let petImg;
 
-atRiskPets();
-breedPop();
+populatePage();
+
+function populatePage() {
+  atRiskPets();
+  breedPop();
+};
 
 // Creates images for at risk dogs to add to front page on load
 function atRiskPets() {
   $.ajax({
-    url: rgUrl + "public/animals/search/available/dogs",
+    url: rgUrl + "search/available/dogs",
     method: "GET",
     headers: {
       "Content-Type": "application/vnd.api+json",
@@ -40,7 +44,7 @@ function atRiskPets() {
 // populates breed selection options
 function breedPop() {
   $.ajax({
-    url: rgUrl + "public/animals/species/8/breeds/?limit=500",
+    url: rgUrl + "species/8/breeds/?limit=300",
     method: "GET",
     headers: {
       "Content-Type": "application/vnd.api+json",
