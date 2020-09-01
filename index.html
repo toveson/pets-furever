@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- noUiSlider css -->
-    <link rel="stylesheet" href="./assets/noUiSlider.css">
     <!-- our css -->
     <link rel="stylesheet" href="./pets-furever/styles.css">
 </head>
@@ -22,8 +20,7 @@
     <!-- dropdowns or links? -->
     <nav>
         <div class="nav-wrapper blue-grey darken-2">
-            <a href="./images/logo.png" class="brand-logo "><img src="./images/logo.png" alt="Pets Furever Logo"
-                    width="60" height="60"></a>
+            <a href="./images/logo.png" class="brand-logo "><img src="./images/logo.png" alt="logo">   </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="sass.html">Adopt</a></li>
                 <li><a href="badges.html">Adopt</a></li>
@@ -65,17 +62,19 @@
         <!-- species -->
         <div class="input-field col s12">
             <select multiple>
-                <option value="" disabled selected>Choose your breed</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+              <option value="" disabled selected>Choose your bree</option>
+              <option value="1">Option 1</option>
+              <option value="2">Option 2</option>
+              <option value="3">Option 3</option>
             </select>
-
-        </div>
+            <label>Materialize Multiple Select</label>
+          </div>
 
     </div>
     <!-- size -->
-
+    <div class="row">
+        <div id="test-slider"></div>
+    </div>
     <!-- age group -->
     <div class="row">
         <div id="test-slider"></div>
@@ -109,7 +108,7 @@
     <footer class="page-footer  blue-grey darken-2">
         <div class="container">
             © 2014 Copyright Text
-            <div class="grey-text text-lighten-4 right" href="#!">
+            <a class="grey-text text-lighten-4 right" href="#!">
                 <div class="fixed-action-btn">
                     <a class="btn-floating pulse btn-large cyan">
                         <i class="large material-icons">people</i>
@@ -121,7 +120,7 @@
 
                     </ul>
                 </div>
-            </div>
+            </a>
 
 
         </div>
@@ -134,10 +133,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <!-- our js -->
     <script src="./pets-furever/script.js"></script>
-    <!-- noUiSlider js -->
-    <script src="./assets/noUiSlider.js"></script>
-
-
 </body>
 
 </html>

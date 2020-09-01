@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- uikit css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
+
+    <title>Pets Furever</title>
+</head>
+
+<body>
+    <!-- navbar -->
+    <nav class="uk-navbar-container uk-margin ">
+        <div class="uk-navbar-left uk-background-primary">
+
+            <a class="uk-navbar-item uk-logo" href="#">
+                <img src="./images/logo.png" alt="dog on a leash inside a paw" style="width:65px;height:65px;">
+            </a>
+            <!-- abnout us button -->
+            <a href="#offcanvas-slide" class="uk-button uk-button-default" uk-toggle>about us</a>
+            <p class="uk-navbar-center">
+                Pets Furever
+            </p>
+
+            <!-- <ul class="uk-navbar-right">
+                <li>
+                    <a href="#">
+                        <span class="uk-icon uk-margin-small-right " uk-icon="icon: star"></span>
+                        Features
+                    </a>
+                </li>
+            </ul>
+
+            <div class="uk-navbar-item">
+                <div>Some <a href="#">Link</a>
+                </div> -->
+
+
+        </div>
+    </nav>
+
+
+    <!-- cards to promote pets -->
+    <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-5">
+            <h3 class="uk-card-title">pet name</h3>
+            <p>info about pet</p>
+        </div>
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-5">
+            <h3 class="uk-card-title">pet name</h3>
+            <p>info about pet</p>
+        </div>
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-5">
+            <h3 class="uk-card-title">pet name</h3>
+            <p>info about pet</p>
+        </div>
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-5">
+            <h3 class="uk-card-title">pet name</h3>
+            <p>info about pet</p>
+        </div>
+        <div class="uk-card uk-card-default uk-card-body uk-width-1-5">
+            <h3 class="uk-card-title">pet name</h3>
+            <p>info about pet</p>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <!-- search form -->
+    <div class="uk-container uk-container-small">
+        <form>
+            <fieldset class="uk-fieldset">
+
+                <legend class="uk-legend">Find a pet!</legend>
+
+                <div class="uk-margin">
+                    <select class="uk-select">
+                        <!-- these can be breeds made from ajax response -->
+                        <option>Click for breeds</option>
+                        <option>Option 02</option>
+                    </select>
+                </div>
+                <!-- check boxes for traits from ajax -->
+                <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                    <p>Pick as many as you want</p>
+                    <label><input class="uk-checkbox" type="checkbox"> A</label>
+                    <label><input class="uk-checkbox" type="checkbox"> B</label>
+                </div>
+                <!-- check boxes for sex -->
+                <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                    <p>Pick one or both</p>
+                    <label><input class="uk-checkbox" type="checkbox"> female</label>
+                    <label><input class="uk-checkbox" type="checkbox"> male</label>
+                </div>
+                <!-- size for search slider -->
+                <div class="uk-margin">
+                    <p>Pick a size</p>
+                    <input class="uk-range" type="range" value="2" min="0" max="10" step="0.1">
+                </div>
+                <!-- age for search slider -->
+                <div class="uk-margin">
+                    <P>How old of a pet?</P>
+                    <input class="uk-range" type="range" value="2" min="0" max="10" step="0.1">
+                </div>
+                <!-- distance for search slider -->
+                <div class="uk-margin">
+                    <p>Distance to search.</p>
+                    <input class="uk-range" type="range" value="50" min="0" max="100" step="0.1">
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!-- about us menu -->
+    <div id="offcanvas-slide" uk-offcanvas>
+        <div class="uk-offcanvas-bar">
+
+            <ul class="uk-nav uk-nav-default">
+                <!-- put our info here -->
+                <li class="uk-active"><a href="#">Active</a></li>
+                <li><a href="#">Item</a></li>
+                <li class="uk-nav-header">Header</li>
+                <li><a href="#">Item</a></li>
+                <li><a href="#">Item</a></li>
+                <li class="uk-nav-divider"></li>
+                <li><a href="#">Item</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+
+
+
+    <!-- uikit js -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+</body>
+
+</html>
