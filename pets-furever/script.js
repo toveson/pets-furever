@@ -15,10 +15,11 @@ let colorsSelect;
 // image variables
 let petImg;
 
-popPageData();
+atRiskPets();
+breedPop();
 
-// Populates images of pets
-function popPageData() {
+// Creates images for at risk dogs to add to front page on load
+function atRiskPets() {
   $.ajax({
     url: rgUrl + "public/animals/search/available/dogs",
     method: "GET",
@@ -26,29 +27,36 @@ function popPageData() {
       "Content-Type": "application/vnd.api+json",
       "Authorization": rgKey,
     },
-    data: {
-      "fieldName": "species.singular",
-      "operation": "equals",
-      "criteria": "Dog"
-  },
   }).then(function(response) {
-    atRiskImg(response);
     console.dir(response);
-  });
+    for (let i = 0; i < response.data.length; i++) {
+      petImg = response.data[i].attributes.pictureThumbnailUrl;
+      petImgEl = $("<img>");
+      petImgEl.attr("src", petImg);
+      $(".at-risk").append(petImgEl);
+    }
+  })
+}
+// populates breed selection options
+function breedPop() {
+  $.ajax({
+    url: rgUrl + "public/animals/species/8/breeds/?limit=500",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/vnd.api+json",
+      "Authorization": rgKey,
+    },
+  }).then(function(response) {
+    console.dir(response);
+    for (let i = 0; i < response.data.length; i++) {
+      breedOp = response.data[i].attributes.name;
+      breedOpEl = $("<option></option>");
+      breedOpEl.text(breedOp);
+      $(".breed-select").append(breedOpEl);
+    }
+  })
 }
 
-function atRiskImg(response) {
-  for (let i = 0; i < response.data.length; i++) {
-    petImg = response.data[i].attributes.pictureThumbnailUrl;
-    petImgEl = $("<img>");
-    petImgEl.attr("src", petImg);
-    $(".at-risk").append(petImgEl);
-    console.log(petImg);
-  }
-}
-
-//function to create carousel images
-// takes dogs that are close to euthanization and creates image elements for them 
 
 // function to get user selections
   // use click listeners on each selection and stores in the variables
