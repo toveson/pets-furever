@@ -66,7 +66,7 @@ function breedPop() {
 }
 
 // Event Listeners
-
+// Changes text based on size selection
 sizeSelect.on("input", function() {
   sizeText = $(".size-text")
     if (parseInt(this.value) === 1) {
@@ -82,7 +82,7 @@ sizeSelect.on("input", function() {
       sizeText.text("Size Group: Extra Large");
     }
 })
-
+// Changes text based on age selection
 ageSelect.on("input", function() {
   ageText = $(".age-text")
     if (parseInt(this.value) === 1) {
@@ -98,7 +98,7 @@ ageSelect.on("input", function() {
       ageText.text("Age Group: Senior");
     }
 })
-
+// Changes text based on distance option
 distanceSelect.on("input", function() {
   distanceText = $(".distance-text");
   distanceValue = parseInt(this.value);
