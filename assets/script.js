@@ -22,6 +22,11 @@ function populatePage() {
   breedPop();
 }
 
+
+if ($(".size-option".value) === 1) {
+  $(".size-group-test").text("Size Group: Small");
+}
+
 // Creates images for at risk dogs to add to front page on load
 function atRiskPets() {
   $.ajax({
