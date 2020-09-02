@@ -64,57 +64,67 @@
                 <div class="uk-margin">
                     <select class="uk-select breed-select">
                         <!-- these can be breeds made from ajax response -->
-                        <option>Click for breeds</option>
+                        <option class="breed-select-text">Click for breeds</option>
                     </select>
                 </div>
                 <!-- House Trained -->
                 <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
                     <p>House Trained:</p>
-                    <label><input class="uk-checkbox" type="checkbox"> Yes</label>
-                    <label><input class="uk-checkbox" type="checkbox"> No Preference</label>
+                    <div class="house-trained">
+                        <label><input class="uk-checkbox" type="checkbox"> Yes</label>
+                        <label><input class="uk-checkbox" type="checkbox" checked> No Preference</label>
+                    </div>
+                
                 </div>
                 <!-- Good with cats -->
                 <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
                     <p>Okay with Cats:</p>
-                    <label><input class="uk-checkbox" type="checkbox"> Yes</label>
-                    <label><input class="uk-checkbox" type="checkbox"> No Preference</label>
+                    <div class="cats-ok">
+                        <label><input class="uk-checkbox" type="checkbox"> Yes</label>
+                        <label><input class="uk-checkbox" type="checkbox" checked> No Preference</label>
+                    </div>
                 </div>
                 <!-- good with dogs -->
                 <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
                     <p>Okay with Dogs:</p>
-                    <label><input class="uk-checkbox" type="checkbox"> Yes</label>
-                    <label><input class="uk-checkbox" type="checkbox"> No Preference</label>
+                    <div class="dogs-ok">
+                        <label><input class="uk-checkbox" type="checkbox" value="js-checked"> Yes</label>
+                        <label><input class="uk-checkbox" type="checkbox" checked> No Preference</label>
+                    </div>
                 </div>
                 <!-- good with kids -->
                 <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
                     <p>Okay with Kids:</p>
-                    <label><input class="uk-checkbox" type="checkbox"> Yes</label>
-                    <label><input class="uk-checkbox" type="checkbox"> No Preference</label>
+                    <div class="kids-ok">
+                        <label><input class="uk-checkbox" type="checkbox"> Yes</label>
+                        <label><input class="uk-checkbox" type="checkbox" checked> No Preference</label>
+                    </div>
+
                 </div>
 
                 <!-- check boxes for sex -->
-                <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid gender-select">
+                <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
                     <p>Gender:</p>
-                    <label><input class="uk-checkbox" type="checkbox"> Female</label>
-                    <label><input class="uk-checkbox" type="checkbox"> Male</label>
-                    <label><input class="uk-checkbox" type="checkbox"> No Preference</label>
+                    <div class="gender-select">
+                        <label><input class="uk-checkbox female" type="checkbox"> Female</label>
+                        <label><input class="uk-checkbox male" type="checkbox"> Male</label>
+                        <label><input class="uk-checkbox gender-no-preference" type="checkbox" checked> No Preference</label>
+                    </div>
+                    
                 </div>
                 <!-- size for search slider -->
                 <div class="uk-margin">
                     <p class="size-text">Size Group: </p>
-                    <!-- add text to show what each selection means -->
                     <input class="uk-range size-select" type="range" value="2" min="1" max="4" step="1">
                 </div>
                 <!-- age for search slider -->
                 <div class="uk-margin">
                     <p class="age-text">Age Group: </p>
-                    <!-- add text to show what each selection means -->
                     <input class="uk-range age-select" type="range" value="2" min="1" max="4" step="1">
                 </div>
                 <!-- distance for search slider -->
                 <div class="uk-margin">
                     <p class="distance-text">Distance: </p>
-                    <!-- add text to show what each selection means -->
                     <input class="uk-range distance-select" type="range" value="33" min="0" max="500" step="1">
                 </div>
                 <!-- Submit Button -->

@@ -1,19 +1,37 @@
 const rgUrl = "https://test1-api.rescuegroups.org/v5/public/animals/";
 const rgKey = "k4QortUC";
+//search variables
+const breedSelect = $(".breed-select");
+const houseTrainedSelect = $(".house-trained")[0];
+const catsOkSelect = $(".cats-ok")[0];
+const dogsOkSelect = $(".dogs-ok")[0];
+const kidsOkSelect = $(".kids-ok")[0];
+const genderSelect = $(".gender-select")[0];
 const sizeSelect = $(".size-select");
 const ageSelect = $(".age-select");
 const distanceSelect = $(".distance-select");
-// search variables
-let breedSelect;
-let sexSelect;
-let houseTrainedSelect;
-let okCatsSelect;
-let okDogsSelect;
-let okKidsSelect;
-let colorsSelect;
-
 // image variables
 let petImg;
+
+$(".uk-checkbox").on("click", function() {
+  let checkboxSelect = ($(this).parent()).parent()[0];
+  
+  if (checkboxSelect === houseTrainedSelect) {
+    console.log("house trained")
+  }
+  else if (checkboxSelect === catsOkSelect) {
+    console.log("cats okay")
+  }
+  else if (checkboxSelect === dogsOkSelect) {
+    console.log("dogs okay")
+  }
+  else if (checkboxSelect === kidsOkSelect) {
+    console.log("kids okay")
+  }
+  else if (checkboxSelect === genderSelect) {
+    console.log("gender")
+  }
+})
 
 populatePage();
 
