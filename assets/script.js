@@ -1,11 +1,11 @@
 const rgUrl = "https://test1-api.rescuegroups.org/v5/public/animals/";
 const rgKey = "k4QortUC";
-
+const sizeSelect = $(".size-select");
+const ageSelect = $(".age-select");
+const distanceSelect = $(".distance-select");
 // search variables
 let breedSelect;
-let sizeSelect;
 let sexSelect;
-let ageSelect;
 let houseTrainedSelect;
 let okCatsSelect;
 let okDogsSelect;
@@ -20,11 +20,6 @@ populatePage();
 function populatePage() {
   atRiskPets();
   breedPop();
-}
-
-
-if ($(".size-option".value) === 1) {
-  $(".size-group-test").text("Size Group: Small");
 }
 
 // Creates images for at risk dogs to add to front page on load
@@ -69,6 +64,46 @@ function breedPop() {
     }
   });
 }
+
+// Event Listeners
+
+sizeSelect.on("input", function() {
+  sizeText = $(".size-text")
+    if (parseInt(this.value) === 1) {
+      sizeText.text("Size Group: Small");
+    }
+    else if (parseInt(this.value) === 2) {
+      sizeText.text("Size Group: Medium");
+    }
+    else if (parseInt(this.value) === 3) {
+      sizeText.text("Size Group: Large");
+    }
+    else if (parseInt(this.value) === 4) {
+      sizeText.text("Size Group: Extra Large");
+    }
+})
+
+ageSelect.on("input", function() {
+  ageText = $(".age-text")
+    if (parseInt(this.value) === 1) {
+      ageText.text("Age Group: Puppy");
+    }
+    else if (parseInt(this.value) === 2) {
+      ageText.text("Age Group: Young");
+    }
+    else if (parseInt(this.value) === 3) {
+      ageText.text("Age Group: Adult");
+    }
+    else if (parseInt(this.value) === 4) {
+      ageText.text("Age Group: Senior");
+    }
+})
+
+distanceSelect.on("input", function() {
+  distanceText = $(".distance-text");
+  distanceValue = parseInt(this.value);
+  distanceText.text("Distance: " + distanceValue + " Miles");
+})
 
 
 // function to get user selections
