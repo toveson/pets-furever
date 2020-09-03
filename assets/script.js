@@ -10,8 +10,25 @@ const genderSelect = $(".gender-select")[0];
 const sizeSelect = $(".size-select");
 const ageSelect = $(".age-select");
 const distanceSelect = $(".distance-select");
+const searchBtn = $(".search-pets")
 // image variables
 let petImg;
+
+searchBtn.on("click", function(event) {
+  event.preventDefault();
+  console.dir(breedSelect[0].value)
+  console.dir(houseTrainedSelect)
+  console.dir(catsOkSelect)
+  console.dir(dogsOkSelect)
+  console.dir(kidsOkSelect)
+  console.dir(genderSelect)
+  console.dir(sizeSelect)
+  console.dir(ageSelect)
+  console.dir(distanceSelect)
+  console.log("this is working")
+
+})
+
 populatePage();
 // populates the page with dynamic data from API
 function populatePage() {
@@ -121,6 +138,8 @@ $(".uk-checkbox").on("click", function() {
 		this.checked = true;
 	}
 });
+
+
 // function to get user selections
 // use click listeners on each selection and stores in the variables
 //function to fetch API data based on user selections
