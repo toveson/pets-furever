@@ -13,3 +13,6 @@ body {
     flex-shrink: 0;
 }
 
+.uk-search-input {
+  position: absolute;
+}
