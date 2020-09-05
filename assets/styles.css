@@ -4,18 +4,37 @@ body, html {
   background-size: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  letter-spacing: 1.5px;
-  color: white!important;
+  letter-spacing: 2px;
+  font-weight: 300;
+  color: #E4DED5!important;
   font-family: 'Kumbh Sans', sans-serif;
   
 }
 .uk-navbar-container, .uk-container {
-  background-color: rgba(93, 83, 70, 0.6)!important;
+  background-color: rgba(100, 92, 81, 0.85)!important;
+  padding: 20px;
 }
+
 .logo {
   width: 8%;
 }
 .uk-navbar-center > h1 {
-  color: white!important;
+  color: #E4DED5!important;
+  margin: 0;
   font-family: 'Kumbh Sans', sans-serif;
+}
+
+.uk-button{
+  background-color: #E4DED5!important;
+  color: #3D3428;
+}
+
+.at-risk-li {
+  width: fit-content;
+  align-items: center;
+  padding: 5px;
+}
+
+.at-risk-li > img {
+  height: 125px;
 }

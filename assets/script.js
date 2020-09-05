@@ -41,10 +41,10 @@ function atRiskPets() {
     console.dir(response)
 		for(let i = 0; i < response.data.length; i++) {
 			petImg = response.data[i].attributes.pictureThumbnailUrl;
-			imgLi = $("<li></li>");
-			imgLi.addClass("uk-width-1-6");
+      imgLi = $("<li></li>");
+			imgLi.addClass("at-risk-li");
 			petImgEl = $("<img>");
-			petImgEl.attr("src", petImg);
+      petImgEl.attr("src", petImg);
 			$(".at-risk").append(imgLi);
 			imgLi.append(petImgEl);
 		}
