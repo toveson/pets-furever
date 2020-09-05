@@ -31,13 +31,14 @@ function populatePage() {
 // Creates images for at risk dogs to add to front page on load
 function atRiskPets() {
 	$.ajax({
-		url: rgUrl + "search/available/dogs",
+		url: rgUrl + "search/available/dogs/?include=pictures",
 		method: "GET",
 		headers: {
 			"Content-Type": "application/vnd.api+json",
 			"Authorization": rgKey,
 		},
 	}).then(function(response, imgLi, petImgEl) {
+    console.dir(response)
 		for(let i = 0; i < response.data.length; i++) {
 			petImg = response.data[i].attributes.pictureThumbnailUrl;
 			imgLi = $("<li></li>");

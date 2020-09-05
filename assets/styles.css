@@ -1,18 +1,21 @@
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-
-  main {
-    flex: 1 0 auto;
-  }
-  .page-footer {
-    height: 50px;
-    margin-top: auto;
-    flex-shrink: 0;
+body, html {
+  background-image: url("../images/dogrunning.jpg");
+  background-position: center center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  letter-spacing: 1.5px;
+  color: white!important;
+  font-family: 'Kumbh Sans', sans-serif;
+  
 }
-
-.uk-search-input {
-  position: absolute;
+.uk-navbar-container, .uk-container {
+  background-color: rgba(93, 83, 70, 0.6)!important;
+}
+.logo {
+  width: 8%;
+}
+.uk-navbar-center > h1 {
+  color: white!important;
+  font-family: 'Kumbh Sans', sans-serif;
 }
