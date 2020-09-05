@@ -11,8 +11,19 @@ const sizeSelect = $(".size-select");
 const ageSelect = $(".age-select");
 const distanceSelect = $(".distance-select");
 const searchBtn = $(".search-pets");
+const storedBreedSelect = JSON.parse(localStorage.getItem("breed"));
+const storedHouseTrainedSelect = JSON.parse(localStorage.getItem("house-trained"));
+const storedCatsOkSelect = JSON.parse(localStorage.getItem("cats-ok"));
+const storedDogsOkSelect = JSON.parse(localStorage.getItem("dogs-ok"));
+const storedKidsOkSelect = JSON.parse(localStorage.getItem("kids-ok"));
+const storedGenderSelect = JSON.parse(localStorage.getItem("gender"));
+const storedSizeSelect = JSON.parse(localStorage.getItem("size"));
+const storedAgeSelect = JSON.parse(localStorage.getItem("age"));
+const storedDistanceSelect = JSON.parse(localStorage.getItem("distance"));
+
 // image variables
 let petImg;
+
 populatePage();
 // populates the page with dynamic data from API
 function populatePage() {
@@ -128,10 +139,52 @@ function storeAgeSelect(userAgeSelect) {
 function storeDistanceValue(distanceValue) {
   localStorage.setItem("distance", JSON.stringify(distanceValue));
 }
+notEmptyBreed();
+function notEmptyBreed(searchBreed) {
+  if (storedBreedSelect !== null) {
+    searchBreed = ('{ "operation": "equals", "fieldName": "animals.breedPrimary", "criteria": "' +  storedBreedSelect +  '" }');
+
+    console.log(searchBreed);
+  }
+}
+
+
+
+
+// function to populate data for search page
+
+function searchPets() {
+  $.ajax({
+    url: rgUrl + "search/available/dogs",
+    method: "GET",
+    headers: {
+      "Content-Type": "application/vnd.api+json",
+      "Authorization": rgKey,
+    },
+    data: JSON.stringify([
+      {
+        "filters": [
+           { operation: "equals", fieldName: "animals.breedPrimary", criteria: "Shepherd" }
+        ]
+    }
+  ]),
+	}).then(function(response) {
+    console.log(response);
+    // filter data with the user input
+      console.log("ajax searched");
+  });
+}
+
+
+
+
+
+
+
 // Event Listeners
 breedSelect.on("click", function() {
   storeBreedSelect();
-})
+});
 // only selects user's input for checkbox options
 $(".uk-checkbox").on("click", function() {
   let checkedGroup = ($(this).parent()).parent()[0];
@@ -212,19 +265,19 @@ ageSelect.on("input", function(ageText) {
 distanceSelect.on("input", function(distanceText, distanceValue) {
 	distanceText = $(".distance-text");
   distanceValue = parseInt(this.value);
-  console.log(distanceValue)
-  distanceText.text("Distance: " + distanceValue + " Miles")
+  console.log(distanceValue);
+  distanceText.text("Distance: " + distanceValue + " Miles");
   storeDistanceValue(distanceValue);
   if(distanceValue === 0) {
     localStorage.removeItem("distance");
-    distanceText.text("Distance: No Preference")
+    distanceText.text("Distance: No Preference");
   }
 });
 
-searchBtn.on("click", function() {
+searchBtn.on("click", function(event, searchBreed) {
   event.preventDefault();
-  localStorage.clear();
-})
+  searchPets(searchBreed);
+});
 // function to get user selections
 // use click listeners on each selection and stores in the variables
 //function to fetch API data based on user selections
