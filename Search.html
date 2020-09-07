@@ -1,156 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
-    <title>Search Pets Furever</title>
-</head>
-
-<body>
-    <!-- Navbar -->
-    <nav class="uk-navbar-container uk-background-primary" uk-navbar>
-        <div class="uk-navbar-left">
-            <a class="logo" href="index.html">
-                <img src="./images/logo.png" alt="dog on a leash inside a paw" style="width:65px;height:65px;">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <!-- UIkit CSS -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
+      <link rel="stylesheet" href="./assets/styles.css"/>
+      <title>Search Pets Furever</title>
+   </head>
+   <body>
+      <!-- Navbar -->
+      <nav class="uk-navbar uk-navbar-container uk-background-primary">
+         <div class="uk-navbar-left">
+            <a class="logo" href="#">
+            <img src="./images/logo.png" alt="white dog paw">
             </a>
-        </div>
-        <div class="uk-navbar-center">
+         </div>
+         <div class="uk-navbar-center">
             <h1>Pets Furever</h1>
-        </div>
-        <div class="uk-navbar-right">
-            <a href="#offcanvas-slide" class="uk-button uk-button-default" uk-toggle>About Us</a>
-
-        </div>
-    </nav>
-
-    <div class="uk-card uk-card-default uk-width-1-2@m uk-align-center">
-        <div class="uk-card-header">
-            <div class="uk-grid-small uk-flex-middle" uk-grid>
-                <div class="uk-width-auto">
-                    <img class="uk-border-circle search-images" width="100" height="100" src=""
-                        alt="image of dog for adoption">
-                </div>
-                <div class="uk-width-expand">
-                    <h3 class="uk-card-title uk-margin-remove-bottom">Dog Name</h3>
-                    <p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00">April 01, 2016</time>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="uk-card-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-        </div>
-        <div class="uk-card-footer">
-            <a href="#" class="uk-button uk-button-text">Read more</a>
-        </div>
-    </div>
-    <div class="uk-card uk-card-default uk-width-1-2@m uk-align-center">
-        <div class="uk-card-header">
-            <div class="uk-grid-small uk-flex-middle" uk-grid>
-                <div class="uk-width-auto">
-                    <img class="uk-border-circle search-images" width="100" height="100" src=""
-                        alt="image of dog for adoption">
-                </div>
-                <div class="uk-width-expand">
-                    <h3 class="uk-card-title uk-margin-remove-bottom">Dog Name</h3>
-                    <p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00">April 01, 2016</time>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="uk-card-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-        </div>
-        <div class="uk-card-footer">
-            <a href="#" class="uk-button uk-button-text">Read more</a>
-        </div>
-    </div>
-    <div class="uk-card uk-card-default uk-width-1-2@m uk-align-center">
-        <div class="uk-card-header">
-            <div class="uk-grid-small uk-flex-middle" uk-grid>
-                <div class="uk-width-auto">
-                    <img class="uk-border-circle search-images" width="100" height="100" src=""
-                        alt="image of dog for adoption">
-                </div>
-                <div class="uk-width-expand">
-                    <h3 class="uk-card-title uk-margin-remove-bottom">Dog Name</h3>
-                    <p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00">April 01, 2016</time>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="uk-card-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-        </div>
-        <div class="uk-card-footer">
-            <a href="#" class="uk-button uk-button-text">Read more</a>
-        </div>
-    </div>
-    <div class="uk-card uk-card-default uk-width-1-2@m uk-align-center">
-        <div class="uk-card-header">
-            <div class="uk-grid-small uk-flex-middle" uk-grid>
-                <div class="uk-width-auto">
-                    <img class="uk-border-circle search-images" width="100" height="100" src=""
-                        alt="image of dog for adoption">
-                </div>
-                <div class="uk-width-expand">
-                    <h3 class="uk-card-title uk-margin-remove-bottom">Dog Name</h3>
-                    <p class="uk-text-meta uk-margin-remove-top"><time datetime="2016-04-01T19:00">April 01, 2016</time>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="uk-card-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-        </div>
-        <div class="uk-card-footer">
-            <a href="#" class="uk-button uk-button-text">Read more</a>
-        </div>
-    </div>
-
-
-    <!-- <ul class="uk-pagination uk-flex-center" uk-margin>
-        <li><a href="#"><span uk-pagination-previous></span></a></li>
-        <li><a href="#">1</a></li>
-        <li class="uk-disabled"><span>...</span></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">6</a></li>
-        <li class="uk-active"><span>7</span></li>
-        <li><a href="#">8</a></li>
-        <li><a href="#"><span uk-pagination-next></span></a></li>
-    </ul> -->
-
-
-
-    <!-- about us menu -->
-    <div id="offcanvas-slide" uk-offcanvas>
-        <div class="uk-offcanvas-bar">
+         </div>
+         <div class="uk-navbar-right">
+            <a href="#offcanvas-slide" class="uk-button uk-button-default">About Us</a>
+         </div>
+      </nav>
+      <section class="content-container uk-padding"></section>
+      <!-- <ul class="uk-pagination uk-flex-center" uk-margin>
+         <li><a href="#"><span uk-pagination-previous></span></a></li>
+         <li><a href="#">1</a></li>
+         <li class="uk-disabled"><span>...</span></li>
+         <li><a href="#">5</a></li>
+         <li><a href="#">6</a></li>
+         <li class="uk-active"><span>7</span></li>
+         <li><a href="#">8</a></li>
+         <li><a href="#"><span uk-pagination-next></span></a></li>
+         </ul> -->
+      <!-- about us menu -->
+      <div id="offcanvas-slide">
+         <div class="uk-offcanvas-bar">
             <ul class="uk-nav uk-nav-default">
-                <!-- put our info here -->
-                <li class="uk-active"><a href="#">Active</a></li>
-                <li><a href="#">Item</a></li>
-                <li class="uk-nav-header">Header</li>
-                <li><a href="#">Item</a></li>
-                <li><a href="#">Item</a></li>
-                <li class="uk-nav-divider"></li>
-                <li><a href="#">Item</a></li>
+               <!-- put our info here -->
+               <li class="uk-active"><a href="#">Active</a></li>
+               <li><a href="#">Item</a></li>
+               <li class="uk-nav-header">Header</li>
+               <li><a href="#">Item</a></li>
+               <li><a href="#">Item</a></li>
+               <li class="uk-nav-divider"></li>
+               <li><a href="#">Item</a></li>
             </ul>
-        </div>
-    </div>
-
-    <script src="js/uikit.min.js"></script>
-    <script src="js/uikit-icons.min.js"></script>
-
-    <!-- UIkit JS -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
-</body>
-
+         </div>
+      </div>
+      <!-- UIkit JS -->
+      <script src="https://code.jquery.com/jquery-3.5.1.js"
+         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+      <script src="assets/script.js"></script>
+   </body>
 </html>

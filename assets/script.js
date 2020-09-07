@@ -21,7 +21,6 @@ const storedSizeSelect = JSON.parse(localStorage.getItem("size"));
 const storedAgeSelect = JSON.parse(localStorage.getItem("age"));
 const storedDistanceSelect = JSON.parse(localStorage.getItem("distance"));
 // image variables
-let petImg;
 populatePage();
 // populates the page with dynamic data from API
 function populatePage() {
@@ -38,13 +37,13 @@ function atRiskPets() {
 			"Authorization": rgKey,
 		},
 	}).then(function(response, imgLi, petImgEl) {
-    console.dir(response)
-		for(let i = 0; i < response.data.length; i++) {
+		console.dir(response);
+		for (let i = 0; i < response.data.length; i++) {
 			petImg = response.data[i].attributes.pictureThumbnailUrl;
-      imgLi = $("<li></li>");
+			imgLi = $("<li></li>");
 			imgLi.addClass("at-risk-li");
 			petImgEl = $("<img>");
-      petImgEl.attr("src", petImg);
+			petImgEl.attr("src", petImg);
 			$(".at-risk").append(imgLi);
 			imgLi.append(petImgEl);
 		}
@@ -60,7 +59,7 @@ function breedPop() {
 			"Authorization": rgKey,
 		},
 	}).then(function(response, breedOp, breedOpEl) {
-		for(let i = 0; i < response.data.length; i++) {
+		for (let i = 0; i < response.data.length; i++) {
 			breedOp = response.data[i].attributes.name;
 			breedOpEl = $("<option></option>");
 			breedOpEl.text(breedOp);
@@ -68,9 +67,56 @@ function breedPop() {
 		}
 	});
 }
+$.ajax({
+	url: rgUrl + "search/available/dogs/?include=pictures",
+	method: "GET",
+	headers: {
+		"Content-Type": "application/vnd.api+json",
+		"Authorization": rgKey,
+	}
+}).then(function(response) {
+	for (let i = 0; i < response.data.length; i++) {
+		let dogImage = response.data[i].attributes.pictureThumbnailUrl;
+		let dogName = response.data[i].attributes.name;
+		let dogAgeGroup = response.data[i].attributes.ageGroup;
+		let dogGender = response.data[i].attributes.sex;
+		let dogPrimaryBreed = response.data[i].attributes.breedPrimary;
+		let dogSizeGroup = response.data[i].attributes.sizeGroup;
+		let dogDescription = response.data[i].attributes.descriptionText;
+
+		let cardContainer = $("<div></div>");
+		let imageContainer = $("<div></div>");
+		let contentContainer = $("<div></div>");
+		let dogImageEl = $("<img>");
+		let dogNameEl = $("<h3></h3>");
+		let dogAgeGroupEl = $("<h4></h4>");
+		let dogGenderEl = $("<h4></h4>");
+		let dogPrimaryBreedEl = $("<h4></h4>");
+		let dogSizeGroupEl = $("<h4></h4>");
+		let dogDescriptionEl = $("<p></p>");
+
+		cardContainer.addClass("uk-card uk-card-default uk-width-1-2@m uk-align-center uk-padding-remove");
+		imageContainer.addClass("dog-img-container");
+		contentContainer.addClass("dog-content-container uk-padding-small");
+		dogImageEl.addClass("search-images uk-padding-small uk-padding-remove-bottom");
+		dogImageEl.attr("src", dogImage);
+		dogNameEl.text("Name: " + dogName);
+		dogAgeGroupEl.text("Age Group: " + dogAgeGroup);
+		dogGenderEl.text("Gender: " + dogGender);
+		dogPrimaryBreedEl.text("Primary Breed: " + dogPrimaryBreed);
+		dogSizeGroupEl.text("Size Group: " + dogSizeGroup);
+		dogDescriptionEl.text(dogDescription);
+
+		$(".content-container").append(cardContainer);
+		cardContainer.append(imageContainer, contentContainer);
+		imageContainer.append(dogImageEl);
+		contentContainer.append(dogNameEl, dogAgeGroupEl, dogGenderEl, dogPrimaryBreedEl, dogSizeGroupEl, dogDescriptionEl);
+
+	}
+});
 // Unchecks boxes in an option group so that only the user option is shown
 function onlyCheckUserSelect(checkedGroup) {
-	for(let i = 0; i < (checkedGroup.children).length; i++) {
+	for (let i = 0; i < (checkedGroup.children).length; i++) {
 		let checkbox = (checkedGroup).children[i].children[0];
 		checkbox.checked = false;
 	}
@@ -83,7 +129,7 @@ function storeBreedSelect() {
 // stores the user's input for house training
 function storeHouseTrainedSelect(userClick) {
 	let userHouseTrainedSelect = userClick.trim().toLowerCase();
-	if(userHouseTrainedSelect === "no preference") {
+	if (userHouseTrainedSelect === "no preference") {
 		localStorage.removeItem("house-trained");
 	} else {
 		localStorage.setItem("house-trained", JSON.stringify(userHouseTrainedSelect));
@@ -92,7 +138,7 @@ function storeHouseTrainedSelect(userClick) {
 // stores the user's input for cats ok
 function storeCatsOkSelect(userClick) {
 	let userCatsOkSelect = userClick.trim().toLowerCase();
-	if(userCatsOkSelect === "no preference") {
+	if (userCatsOkSelect === "no preference") {
 		localStorage.removeItem("cat-ok");
 	} else {
 		localStorage.setItem("cat-ok", JSON.stringify(userCatsOkSelect));
@@ -101,7 +147,7 @@ function storeCatsOkSelect(userClick) {
 // stores the user's input for dogs ok
 function storeDogsOkSelect(userClick) {
 	let userDogsOkSelect = userClick.trim().toLowerCase();
-	if(userDogsOkSelect === "no preference") {
+	if (userDogsOkSelect === "no preference") {
 		localStorage.removeItem("dogs-ok");
 	} else {
 		localStorage.setItem("dogs-ok", JSON.stringify(userDogsOkSelect));
@@ -110,7 +156,7 @@ function storeDogsOkSelect(userClick) {
 // stores the user's input for kids ok
 function storeKidsOkSelect(userClick) {
 	let userKidsOkSelect = userClick.trim().toLowerCase();
-	if(userKidsOkSelect === "no preference") {
+	if (userKidsOkSelect === "no preference") {
 		localStorage.removeItem("kids-ok");
 	} else {
 		localStorage.setItem("kids-ok", JSON.stringify(userKidsOkSelect));
@@ -119,7 +165,7 @@ function storeKidsOkSelect(userClick) {
 // stores the user's input for gender
 function storeGenderSelect(userClick) {
 	let userGenderSelect = userClick.trim().toLowerCase();
-	if(userGenderSelect === "no preference") {
+	if (userGenderSelect === "no preference") {
 		localStorage.removeItem("gender");
 	} else {
 		localStorage.setItem("gender", JSON.stringify(userGenderSelect));
@@ -140,32 +186,26 @@ function storeDistanceValue(distanceValue) {
 notEmptyBreed();
 
 function notEmptyBreed(searchBreed) {
-	if(storedBreedSelect !== null) {
+	if (storedBreedSelect !== null) {
 		searchBreed = ('{ "operation": "equals", "fieldName": "animals.breedPrimary", "criteria": "' + storedBreedSelect + '" }');
 		console.log(searchBreed);
 	}
 }
 // function to populate data for search page
-// function searchPets() {
-// 	$.ajax({
-// 		url: rgUrl + "search/available/dogs/?limit=10",
-// 		method: "POST",
-// 		headers: {
-// 			"Authorization": rgKey,
-// 			"Content-Type": "application/vnd.api+json"
-// 		},
-// 		data: {
-// 			"filterRadius": {
-// 				"miles": 25,
-// 				"postalcode": 90210
-// 			}
-// 		}
-// 	}).then(function(response) {
-// 		console.log(response);
-// 		// filter data with the user input
-// 		console.log("ajax searched");
-// 	});
-// }
+function searchPets() {
+	$.ajax({
+		url: rgUrl + "search/available/dogs/?limit=10",
+		method: "POST",
+		headers: {
+			"Authorization": rgKey,
+			"Content-Type": "application/vnd.api+json"
+		}
+	}).then(function(response) {
+		console.log(response);
+		// filter data with the user input
+		console.log("ajax searched");
+	});
+}
 // Event Listeners
 breedSelect.on("click", function() {
 	storeBreedSelect();
@@ -174,23 +214,23 @@ breedSelect.on("click", function() {
 $(".uk-checkbox").on("click", function() {
 	let checkedGroup = ($(this).parent()).parent()[0];
 	let userClick = $(this)[0].nextSibling.textContent;
-	if(checkedGroup === houseTrainedSelect) {
+	if (checkedGroup === houseTrainedSelect) {
 		storeHouseTrainedSelect(userClick);
 		onlyCheckUserSelect(checkedGroup);
 		this.checked = true;
-	} else if(checkedGroup === catsOkSelect) {
+	} else if (checkedGroup === catsOkSelect) {
 		storeCatsOkSelect(userClick);
 		onlyCheckUserSelect(checkedGroup);
 		this.checked = true;
-	} else if(checkedGroup === dogsOkSelect) {
+	} else if (checkedGroup === dogsOkSelect) {
 		storeDogsOkSelect(userClick);
 		onlyCheckUserSelect(checkedGroup);
 		this.checked = true;
-	} else if(checkedGroup === kidsOkSelect) {
+	} else if (checkedGroup === kidsOkSelect) {
 		storeKidsOkSelect(userClick);
 		onlyCheckUserSelect(checkedGroup);
 		this.checked = true;
-	} else if(checkedGroup === genderSelect) {
+	} else if (checkedGroup === genderSelect) {
 		storeGenderSelect(userClick);
 		onlyCheckUserSelect(checkedGroup);
 		this.checked = true;
@@ -200,22 +240,22 @@ $(".uk-checkbox").on("click", function() {
 sizeSelect.on("input", function(sizeText) {
 	sizeText = $(".size-text");
 	let userSizeSelect;
-	if(parseInt(this.value) === 0) {
+	if (parseInt(this.value) === 0) {
 		localStorage.removeItem("size");
 		sizeText.text("Size Group: No Preference");
-	} else if(parseInt(this.value) === 1) {
+	} else if (parseInt(this.value) === 1) {
 		userSizeSelect = "small";
 		storeSizeSelect(userSizeSelect);
 		sizeText.text("Size Group: Small");
-	} else if(parseInt(this.value) === 2) {
+	} else if (parseInt(this.value) === 2) {
 		userSizeSelect = "medium";
 		storeSizeSelect(userSizeSelect);
 		sizeText.text("Size Group: Medium");
-	} else if(parseInt(this.value) === 3) {
+	} else if (parseInt(this.value) === 3) {
 		userSizeSelect = "large";
 		storeSizeSelect(userSizeSelect);
 		sizeText.text("Size Group: Large");
-	} else if(parseInt(this.value) === 4) {
+	} else if (parseInt(this.value) === 4) {
 		userSizeSelect = "extra large";
 		storeSizeSelect(userSizeSelect);
 		sizeText.text("Size Group: Extra Large");
@@ -225,22 +265,22 @@ sizeSelect.on("input", function(sizeText) {
 ageSelect.on("input", function(ageText) {
 	ageText = $(".age-text");
 	let userAgeSelect;
-	if(parseInt(this.value) === 0) {
+	if (parseInt(this.value) === 0) {
 		localStorage.removeItem("age");
 		ageText.text("Age Group: No Preference");
-	} else if(parseInt(this.value) === 1) {
+	} else if (parseInt(this.value) === 1) {
 		userAgeSelect = "puppy";
 		storeAgeSelect(userAgeSelect);
 		ageText.text("Age Group: Puppy");
-	} else if(parseInt(this.value) === 2) {
+	} else if (parseInt(this.value) === 2) {
 		userAgeSelect = "young";
 		storeAgeSelect(userAgeSelect);
 		ageText.text("Age Group: Young");
-	} else if(parseInt(this.value) === 3) {
+	} else if (parseInt(this.value) === 3) {
 		userAgeSelect = "adult";
 		storeAgeSelect(userAgeSelect);
 		ageText.text("Age Group: Adult");
-	} else if(parseInt(this.value) === 4) {
+	} else if (parseInt(this.value) === 4) {
 		userAgeSelect = "senior";
 		storeAgeSelect(userAgeSelect);
 		ageText.text("Age Group: Senior");
@@ -253,7 +293,7 @@ distanceSelect.on("input", function(distanceText, distanceValue) {
 	console.log(distanceValue);
 	distanceText.text("Distance: " + distanceValue + " Miles");
 	storeDistanceValue(distanceValue);
-	if(distanceValue === 0) {
+	if (distanceValue === 0) {
 		localStorage.removeItem("distance");
 		distanceText.text("Distance: No Preference");
 	}
