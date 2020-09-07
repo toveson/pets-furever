@@ -21,7 +21,6 @@ const storedSizeSelect = JSON.parse(localStorage.getItem("size"));
 const storedAgeSelect = JSON.parse(localStorage.getItem("age"));
 const storedDistanceSelect = JSON.parse(localStorage.getItem("distance"));
 // image variables
-let petImg;
 populatePage();
 // populates the page with dynamic data from API
 function populatePage() {
@@ -38,13 +37,13 @@ function atRiskPets() {
 			"Authorization": rgKey,
 		},
 	}).then(function(response, imgLi, petImgEl) {
-    console.dir(response)
+    console.dir(response);
 		for(let i = 0; i < response.data.length; i++) {
 			petImg = response.data[i].attributes.pictureThumbnailUrl;
-      imgLi = $("<li></li>");
+      		imgLi = $("<li></li>");
 			imgLi.addClass("at-risk-li");
 			petImgEl = $("<img>");
-      petImgEl.attr("src", petImg);
+      		petImgEl.attr("src", petImg);
 			$(".at-risk").append(imgLi);
 			imgLi.append(petImgEl);
 		}
@@ -68,6 +67,53 @@ function breedPop() {
 		}
 	});
 }
+$.ajax({
+	url: rgUrl + "search/available/dogs/?include=pictures",
+	method: "GET",
+	headers: {
+		"Content-Type": "application/vnd.api+json",
+		"Authorization": rgKey,
+	}
+	}).then(function(response) {
+		for(let i = 0; i < response.data.length; i++) {
+			let dogImage = response.data[i].attributes.pictureThumbnailUrl;
+			let dogName = response.data[i].attributes.name;
+			let dogAgeGroup = response.data[i].attributes.ageGroup;
+			let dogGender = response.data[i].attributes.sex;
+			let dogPrimaryBreed = response.data[i].attributes.breedPrimary;
+			let dogSizeGroup = response.data[i].attributes.sizeGroup;
+			let dogDescription = response.data[i].attributes.descriptionText;
+
+			let cardContainer = $("<div></div>");
+			let imageContainer = $("<div></div>");
+			let contentContainer = $("<div></div>");
+			let dogImageEl = $("<img>");
+			let dogNameEl = $("<h3></h3>");
+			let dogAgeGroupEl = $("<h4></h4>");
+			let dogGenderEl = $("<h4></h4>");
+			let dogPrimaryBreedEl = $("<h4></h4>");
+			let dogSizeGroupEl = $("<h4></h4>");
+			let dogDescriptionEl = $("<p></p>");
+
+			cardContainer.addClass("uk-card uk-card-default uk-width-1-2@m uk-align-center uk-padding-remove");
+			imageContainer.addClass("dog-img-container");
+			contentContainer.addClass("dog-content-container uk-padding-small");
+			dogImageEl.addClass("search-images uk-padding-small uk-padding-remove-bottom");
+			dogImageEl.attr("src", dogImage);
+			dogNameEl.text("Name: " + dogName);
+			dogAgeGroupEl.text("Age Group: " + dogAgeGroup);
+			dogGenderEl.text("Gender: " + dogGender);
+			dogPrimaryBreedEl.text("Primary Breed: " + dogPrimaryBreed);
+			dogSizeGroupEl.text("Size Group: " + dogSizeGroup);
+			dogDescriptionEl.text(dogDescription);
+
+			$(".content-container").append(cardContainer);
+			cardContainer.append(imageContainer, contentContainer);
+			imageContainer.append(dogImageEl);
+			contentContainer.append(dogNameEl, dogAgeGroupEl, dogGenderEl,dogPrimaryBreedEl, dogSizeGroupEl, dogDescriptionEl);
+
+		}
+});
 // Unchecks boxes in an option group so that only the user option is shown
 function onlyCheckUserSelect(checkedGroup) {
 	for(let i = 0; i < (checkedGroup.children).length; i++) {
@@ -146,26 +192,20 @@ function notEmptyBreed(searchBreed) {
 	}
 }
 // function to populate data for search page
-// function searchPets() {
-// 	$.ajax({
-// 		url: rgUrl + "search/available/dogs/?limit=10",
-// 		method: "POST",
-// 		headers: {
-// 			"Authorization": rgKey,
-// 			"Content-Type": "application/vnd.api+json"
-// 		},
-// 		data: {
-// 			"filterRadius": {
-// 				"miles": 25,
-// 				"postalcode": 90210
-// 			}
-// 		}
-// 	}).then(function(response) {
-// 		console.log(response);
-// 		// filter data with the user input
-// 		console.log("ajax searched");
-// 	});
-// }
+function searchPets() {
+	$.ajax({
+		url: rgUrl + "search/available/dogs/?limit=10",
+		method: "POST",
+		headers: {
+			"Authorization": rgKey,
+			"Content-Type": "application/vnd.api+json"
+		}
+	}).then(function(response) {
+		console.log(response);
+		// filter data with the user input
+		console.log("ajax searched");
+	});
+}
 // Event Listeners
 breedSelect.on("click", function() {
 	storeBreedSelect();
