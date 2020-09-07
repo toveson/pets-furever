@@ -10,8 +10,9 @@ body, html {
   font-family: 'Kumbh Sans', sans-serif; 
 }
 
-.uk-navbar-container, .uk-container {
-  background-color: rgba(100, 92, 81, 0.85)!important;
+.uk-navbar-container, .uk-container, .uk-card {
+  background-color: rgba(100, 92, 81, 0.9)!important;
+  color: #E4DED5!important;
   padding: 20px;
 }
 
@@ -23,6 +24,7 @@ body, html {
   margin: 0;
   font-family: 'Kumbh Sans', sans-serif;
 }
+
 
 .uk-button{
   background-color: #E4DED5!important;
@@ -46,3 +48,16 @@ body, html {
 .uk-checkbox:checked, ::selection {
   background-color: #B6ADA2!important;
 }
+
+.search-images {
+  width: 25%;
+  float: left;
+}
+
+h3, h4 {
+  color: #E4DED5!important;
+  width: 75%;
+  margin: 0;
+  float: left;
+}
+
