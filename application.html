@@ -15,7 +15,7 @@
     <header>
         <nav class="uk-navbar-container uk-background-primary" uk-navbar>
             <div class="uk-navbar-left">
-                <a class="logo" href="#"><img src="./images/logo.png" alt="white dog paw"></a>
+                <a class="logo" href="index.html"><img src="./images/logo.png" alt="white dog paw"></a>
             </div>
             <div class="uk-navbar-center">
                 <h1>Pets Furever</h1>
@@ -51,11 +51,11 @@
                 <li><a href="index.html">Home</a></li>
                 <li class="uk-active"><a href="application.html">| Adoption Application |</a></li>
                 <li><a href="recipes.html">Pet Food Recipes</a></li>
-                
-				<li class="uk-nav-header">Coming Soon</li>
-				<li><a href="#">Search more than dogs</a></li>
-				<li><a href="#">adoption stories</a></li>
-				
+
+                <li class="uk-nav-header">Coming Soon</li>
+                <li><a href="#">Search more than dogs</a></li>
+                <li><a href="#">adoption stories</a></li>
+
                 <li class="uk-nav-header">Made by:</li>
                 <li>
                     <p>Diana Shull, Molly Sweetman and Trever Oveson.</p>
@@ -154,6 +154,34 @@
                         <legend class="uk-legend">HOUSEHOLD INFORMATION</legend>
 
                         <div class="uk-margin">
+                            <div class="uk-form-label">Do you own or rent your home?</div>
+                            <div class="uk-form-controls">
+                                <label><input class="uk-radio" type="radio" name="radio1">Own</label><br>
+                                <label><input class="uk-radio" type="radio" name="radio1">Rent</label>
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <div class="uk-form-label">If renting, are animals allowed?</div>
+                            <div class="uk-form-controls">
+                                <label><input class="uk-radio" type="radio" name="radio1">Yes</label><br>
+                                <label><input class="uk-radio" type="radio" name="radio1">No</label>
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <div class="uk-form-label">Do you have a backyard?</div>
+                            <div class="uk-form-controls">
+                                <label><input class="uk-radio" type="radio" name="radio1">Yes</label><br>
+                                <label><input class="uk-radio" type="radio" name="radio1">No</label>
+                            </div>
+                        </div>
+                        <div class="uk-margin">
+                            <div class="uk-form-label">If so, is it fenced?</div>
+                            <div class="uk-form-controls">
+                                <label><input class="uk-radio" type="radio" name="radio1">Yes</label><br>
+                                <label><input class="uk-radio" type="radio" name="radio1">No</label>
+                            </div>
+                        </div>
+                        <div class="uk-margin">
                             <div>Please indicate how many adults live in the home:</div>
                             <input class="uk-input" type="text" placeholder="Name">
 
@@ -164,10 +192,10 @@
                         </div>
 
                         <div class="uk-margin">
-                            <div class="uk-form-label">Radio</div>
+                            <div class="uk-form-label">Are all members of the household in agreement about adopting a dog?</div>
                             <div class="uk-form-controls">
-                                <label><input class="uk-radio" type="radio" name="radio1"> Option 01</label><br>
-                                <label><input class="uk-radio" type="radio" name="radio1"> Option 02</label>
+                                <label><input class="uk-radio" type="radio" name="radio1">Yes</label><br>
+                                <label><input class="uk-radio" type="radio" name="radio1">No</label>
                             </div>
                         </div>
                         <div class="uk-margin">
@@ -177,6 +205,10 @@
                             </div>
                         </div>
                     </fieldset>
+                    <div class="uk-margin" uk-margin>
+                        
+                        <button class="uk-button uk-button-default">Submit</button>
+                    </div>
                 </form>
 
 
