@@ -39,7 +39,7 @@ function atRiskPets() {
 	}).then(function(response, imgLi, petImgEl) {
     console.dir(response);
 		for(let i = 0; i < response.data.length; i++) {
-			petImg = response.data[i].attributes.pictureThumbnailUrl;
+			let petImg = response.data[i].attributes.pictureThumbnailUrl;
       		imgLi = $("<li></li>");
 			imgLi.addClass("at-risk-li");
 			petImgEl = $("<img>");
@@ -102,8 +102,8 @@ $.ajax({
 
 			profileCard.addClass("dog-profile-card");
 			highlightContainer.addClass("hightlight-container uk-card uk-card-default uk-child-width-1-2 uk-grid uk-margin-remove");
-			dogProfileImage.addClass("dog-profile-image uk-card-media-left uk-cover-container")
-			dogProfileFacts.addClass("dog-profile-facts uk-card-body")
+			dogProfileImage.addClass("dog-profile-image uk-card-media-left uk-cover-container");
+			dogProfileFacts.addClass("dog-profile-facts uk-card-body");
 			descriptionContainer.addClass("description-container uk-card uk-card-body");
 			dogImageEl.addClass("search-images uk-cover");
 			dogImageEl.attr("src", dogImage);
