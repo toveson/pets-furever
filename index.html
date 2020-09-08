@@ -16,7 +16,7 @@
 	<header>
 		<nav class="uk-navbar-container uk-background-primary" uk-navbar>
 			<div class="uk-navbar-left">
-				<a class="logo" href="#"><img src="./images/logo.png" alt="white dog paw"></a>
+				<a class="logo" href="index.html"><img src="./images/logo.png" alt="white dog paw"></a>
 			</div>
 			<div class="uk-navbar-center">
 				<h1>Pets Furever</h1>
@@ -30,25 +30,40 @@
 			<ul class="uk-nav uk-nav-default">
 				<!-- put our info here -->
 				<li class="uk-nav-header">Pets Furever</li>
-				<li><p>All of us at Pets Furever have dogs and are passionate about making sure every dog has a home.</p></li>
-				<li><p>Pets furever is a very functional, easy-to-use application that makes adopting a pet simple and fun.</p></li>
-				<li><p>We are passionate about making sure every dog has a furever home.</p></li>
-				<li><p>Pets Furever used Rescue Group API to present the user all the dogs in their area that are in need of a loving home</p></li>
-				
+				<li>
+					<p>All of us at Pets Furever have dogs and are passionate about making sure every dog has a home.
+					</p>
+				</li>
+				<li>
+					<p>Pets furever is a very functional, easy-to-use application that makes adopting a pet simple and
+						fun.</p>
+				</li>
+				<li>
+					<p>We are passionate about making sure every dog has a furever home.</p>
+				</li>
+				<li>
+					<p>Pets Furever used Rescue Group API to present the user all the dogs in their area that are in
+						need of a loving home</p>
+				</li>
+
 				<li class="uk-nav-header">Links</li>
 				<li class="uk-active"><ahref="index.html">| Home |</a></li>
 				<li><a href="application.html">Adoption Application</a></li>
 				<li><a href="recipes.html">Pet Food Recipes</a></li>
-				
+
 				<li class="uk-nav-header">Coming Soon</li>
 				<li><a href="#">Search more than dogs</a></li>
 				<li><a href="#">adoption stories</a></li>
-				
+
 				<li class="uk-nav-header">Made by:</li>
-				<li><p>Diana Shull, Molly Sweetman and Trever Oveson.</p></li>
+				<li>
+					<p>Diana Shull, Molly Sweetman and Trever Oveson.</p>
+				</li>
 			</ul>
 		</div>
+
 	</div>
+	<img src="" alt="">
 	<!-- Adopt a pet today! -->
 	<!-- cards to promote pets -->
 	<div class="uk-container uk-container-small uk-margin">
@@ -58,6 +73,17 @@
 				uk-slider-item="previous"></a>
 			<a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
 				uk-slider-item="next"></a>
+=======
+		<!-- AT RISK DOGS -->
+		<div class="uk-container uk-margin">
+			<div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="sets: true">
+				<ul class="uk-slider-items uk-search-input at-risk"></ul>
+				<a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+					uk-slider-item="previous"></a>
+				<a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+					uk-slider-item="next"></a>
+			</div>
+
 		</div>
 	</div>
 	<!-- search form -->
@@ -76,51 +102,48 @@
 					<p>House Trained:</p>
 					<div class="house-trained">
 						<label>
-							<input class="uk-checkbox house-trained-yes" type="checkbox"> Yes</label>
+							<input class="uk-checkbox house-trained-yes" type="checkbox">Yes</label>
 						<label>
 							<input class="uk-checkbox house-trained-no" type="checkbox" checked> No Preference</label>
+						</div>
 					</div>
-				</div>
-				<!-- Good with cats -->
-				<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-					<p>Okay with Cats:</p>
-					<div class="cats-ok">
-						<label>
+					<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+						<p>Okay with Cats:</p>
+						<div class="cats-ok">
+							<label>
 							<input class="uk-checkbox" type="checkbox"> Yes</label>
-						<label>
+							<label>
 							<input class="uk-checkbox" type="checkbox" checked> No Preference</label>
+						</div>
 					</div>
-				</div>
-				<!-- good with dogs -->
-				<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-					<p>Okay with Dogs:</p>
-					<div class="dogs-ok">
-						<label>
+					<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+						<p>Okay with Dogs:</p>
+						<div class="dogs-ok">
+							<label>
 							<input class="uk-checkbox" type="checkbox" value="js-checked"> Yes</label>
-						<label>
+							<label>
 							<input class="uk-checkbox" type="checkbox" checked> No Preference</label>
+						</div>
 					</div>
-				</div>
-				<!-- good with kids -->
-				<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-					<p>Okay with Kids:</p>
-					<div class="kids-ok">
-						<label>
+					<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+						<p>Okay with Kids:</p>
+						<div class="kids-ok">
+							<label>
 							<input class="uk-checkbox" type="checkbox"> Yes</label>
-						<label>
+							<label>
 							<input class="uk-checkbox" type="checkbox" checked> No Preference</label>
+						</div>
 					</div>
-				</div>
-				<!-- check boxes for sex -->
-				<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
-					<p>Gender:</p>
-					<div class="gender-select">
-						<label>
+					<div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+						<p>Gender:</p>
+						<div class="gender-select">
+							<label>
 							<input class="uk-checkbox female" type="checkbox"> Female</label>
-						<label>
+							<label>
 							<input class="uk-checkbox male" type="checkbox"> Male</label>
-						<label>
+							<label>
 							<input class="uk-checkbox no-preference" type="checkbox" checked> No Preference</label>
+						</div>
 					</div>
 				</div>
 				<!-- size for search slider -->
@@ -136,7 +159,8 @@
 				<!-- distance for search slider -->
 				<div class="uk-margin">
 					<p class="distance-text">Distance: No Preference</p>
-					<input class="uk-range distance-select" type="range" value="0" min="0" max="500" step="1"> </div>
+					<input class="uk-range distance-select" type="range" value="0" min="0" max="500" step="1">
+				</div>
 				<!-- Submit Button -->
 				<div class="uk-margin" uk-margin>
 					<a href="./Search.html" class="uk-button uk-button-default submit-search search-pets">Submit</a>
