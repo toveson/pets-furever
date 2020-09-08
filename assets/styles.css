@@ -1,63 +1,108 @@
+/* UNIVERSAL STYLES */
 body, html {
-  background-image: url("../images/dogrunning.jpg");
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  background-image: url("../images/hero-image.jpg");
+
   background-position: center center;
-  background-size: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: 100%;
   letter-spacing: 2px;
   font-weight: 300;
-  color: #E4DED5!important;
-  font-family: 'Kumbh Sans', sans-serif; 
+  color: #E4DED5;
+  font-family: 'Kumbh Sans', sans-serif!important; 
 }
-
-.uk-navbar-container, .uk-container, .uk-card {
-  background-color: rgba(100, 92, 81, 0.9)!important;
-  color: #E4DED5!important;
+/* @media (max-width: 1200px) {
+  body, html {
+    background-image: url("../images/hero-image.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    height: 100%;
+  }
+}
+@media (max-width: 775px) {
+  body, html {
+    background-image: url("../images/hero-image.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    height: 100%;
+  }
+}
+@media (max-width: 500px) {
+  body, html {
+    background-image: url("../images/hero-image.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+  }
+} */
+/* NAVBAR */
+.uk-navbar-container,  .uk-container, .uk-card {
+  background-color: rgba(46, 46, 46, 0.9)!important;
+  color: #E4DED5;
   padding: 20px;
 }
-
+.uk-offcanvas-bar {
+  background-color: #2E2E2E;
+  color: #E4DED5;
+}
 .logo {
   width: 8%;
 }
 .uk-navbar-center > h1 {
-  color: #E4DED5!important;
+  color: #E4DED5;
   margin: 0;
   font-family: 'Kumbh Sans', sans-serif;
 }
-
-
+/* BUTTON STYLING FOR ABOUT US AND SUBMIT */
 .uk-button{
   background-color: #E4DED5!important;
-  color: #3D3428;
+  color: #2E2E2E;
 }
-
+/* AT RISK CAROUSEL STYLES INDEX.HTML */
 .at-risk-li {
   width: fit-content;
   align-items: center;
   padding: 5px;
 }
-
 .at-risk-li > img {
   height: 125px;
 }
-
+/* FORM SELECTION INDEX.HTML */
 .breed-select {
   background-color:  #E4DED5;
 }
-
 .uk-checkbox:checked, ::selection {
   background-color: #B6ADA2!important;
 }
-
-.search-images {
-  width: 25%;
-  float: left;
+/* PET CARDS SEARCH.HTML */
+.dog-profile-card {
+  margin-bottom: 20px;
 }
-
+.dog-profile-image {
+  padding: 0;
+}
+.search-images {
+  height: 100%;
+  float: left;
+  object-fit: cover;
+  overflow: hidden;
+}
 h3, h4 {
   color: #E4DED5!important;
   width: 75%;
   margin: 0;
-  float: left;
+  padding-bottom: 5px;
 }
-
+.card-container, .uk-container, .uk-slider-items{
+  margin: 20px auto;
+  width: 45%;
+  max-width: 750px;
+}
