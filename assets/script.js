@@ -180,7 +180,7 @@ function userInputAnimalSearch(response) {
 		let dogSizeGroupEl = $("<h4></h4>");
 		let dogDescriptionEl = $("<p>" + dogDescription + "</p>");
 		profileCard.addClass("dog-profile-card");
-		highlightContainer.addClass("hightlight-container uk-card dark-background padding-20 uk-child-width-1-2 uk-grid uk-margin-remove");
+		highlightContainer.addClass("highlight-container uk-card dark-background padding-20 uk-child-width-1-2 uk-grid uk-margin-remove");
 		dogProfileImage.addClass("dog-profile-image padding-0 uk-card-media-left uk-cover-container");
 		dogProfileFacts.addClass("dog-profile-facts padding-0 uk-card-body");
 		descriptionContainer.addClass("description-container uk-card dark-background padding-20 uk-card-body");
