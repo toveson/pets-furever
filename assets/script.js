@@ -20,37 +20,11 @@ const storedGenderSelect = JSON.parse(localStorage.getItem("gender"));
 const storedSizeSelect = JSON.parse(localStorage.getItem("size"));
 const storedAgeSelect = JSON.parse(localStorage.getItem("age"));
 const storedDistanceSelect = JSON.parse(localStorage.getItem("distance"));
-// image variables
-populatePage();
-// populates the page with dynamic data from API
-function populatePage() {
-	atRiskPets();
-	breedPop();
-}
-// Creates images for at risk dogs to add to front page on load
-function atRiskPets() {
-	$.ajax({
-		url: rgUrl + "search/available/dogs/?include=pictures",
-		method: "GET",
-		headers: {
-			"Content-Type": "application/vnd.api+json",
-			"Authorization": rgKey,
-		},
-	}).then(function(response, imgLi, petImgEl) {
-		console.dir(response);
-		for(let i = 0; i < response.data.length; i++) {
-			let petImg = response.data[i].attributes.pictureThumbnailUrl;
-			imgLi = $("<li></li>");
-			imgLi.addClass("at-risk-li");
-			petImgEl = $("<img>");
-			petImgEl.attr("src", petImg);
-			$(".at-risk").append(imgLi);
-			imgLi.append(petImgEl);
-		}
-	});
-}
-// populates breed selection options
-function breedPop() {
+// GRAB API RESPONSES
+breedAPICall();
+dogAPICall();
+// POPULATE RESPONSE FOR BREED SELECTION
+function breedAPICall() {
 	$.ajax({
 		url: rgUrl + "species/8/breeds/?limit=300",
 		method: "GET",
@@ -58,25 +32,134 @@ function breedPop() {
 			"Content-Type": "application/vnd.api+json",
 			"Authorization": rgKey,
 		},
-	}).then(function(response, breedOp, breedOpEl) {
-		for(let i = 0; i < response.data.length; i++) {
-			breedOp = response.data[i].attributes.name;
-			breedOpEl = $("<option></option>");
-			breedOpEl.text(breedOp);
-			$(".breed-select").append(breedOpEl);
-		}
+	}).then(function(response) {
+		breedPop(response);
 	});
 }
-$.ajax({
-	url: rgUrl + "search/available/dogs/?include=pictures",
-	method: "GET",
-	headers: {
-		"Content-Type": "application/vnd.api+json",
-		"Authorization": rgKey,
+// POPULATE RESPONSE FOR DOG SELECTION
+function dogAPICall() {
+	$.ajax({
+		url: rgUrl + "search/available/dogs/?include=pictures",
+		method: "GET",
+		headers: {
+			"Content-Type": "application/vnd.api+json",
+			"Authorization": rgKey,
+		},
+	}).then(function(response) {
+		atRiskPets(response);
+		userInputAnimalSearch(response)
+	});
+}
+// CREATES IMAGE CAROUSEL FOR AT RISK DOGS
+function atRiskPets(response) {
+	let dogImgID;
+	let dogImg;
+	for (let i = 0; i < response.data.length; i++) {
+		dogImgID = response.data[i].relationships.pictures.data[0].id;
+		for (let j = 0; j < response.included.length; j++) {
+			let dogImgOptions = response.included[j].id;
+			if (dogImgOptions === dogImgID) {
+				dogImg = response.included[j].attributes.original.url;
+				imgLi = $("<li></li>");
+				imgLi.addClass("at-risk-li");
+				dogImgEl = $("<img>");
+				dogImgEl.attr("src", dogImg);
+				$(".at-risk").append(imgLi);
+				imgLi.append(dogImgEl);
+			}
+		}
 	}
-}).then(function(response) {
+}
+// POPULATES BREED OPTIONS
+function breedPop (response, breedOp, breedOpEl) {
 	for(let i = 0; i < response.data.length; i++) {
-		let dogImage = response.data[i].attributes.pictureThumbnailUrl;
+		breedOp = response.data[i].attributes.name;
+		breedOpEl = $("<option></option>");
+		breedOpEl.text(breedOp);
+		$(".breed-select").append(breedOpEl);
+	}
+}
+// PREVENT SELECTION OF MUTLIPLE CHOICES IN USER SELECTION OPTIONS
+function onlyCheckUserSelect(checkedGroup) {
+	for(let i = 0; i < (checkedGroup.children).length; i++) {
+		let checkbox = (checkedGroup).children[i].children[0];
+		checkbox.checked = false;
+	}
+}
+// STORES USER INPUT FOR BREED
+function storeBreedSelect() {
+	let userBreedSelect = breedSelect[0].value;
+	localStorage.setItem("breed", JSON.stringify(userBreedSelect));
+}
+// STORES USER INPUT FOR HOUSE TRAINING
+function storeHouseTrainedSelect(userClick) {
+	let userHouseTrainedSelect = userClick.trim().toLowerCase();
+	if(userHouseTrainedSelect === "no preference") {
+		localStorage.removeItem("house-trained");
+	} else {
+		localStorage.setItem("house-trained", JSON.stringify(userHouseTrainedSelect));
+	}
+}
+// STORES USER INPUT ON CATS OK SELECTION
+function storeCatsOkSelect(userClick) {
+	let userCatsOkSelect = userClick.trim().toLowerCase();
+	if(userCatsOkSelect === "no preference") {
+		localStorage.removeItem("cat-ok");
+	} else {
+		localStorage.setItem("cat-ok", JSON.stringify(userCatsOkSelect));
+	}
+}
+// STORES USER INPUT ON DOGS OK SELECTION
+function storeDogsOkSelect(userClick) {
+	let userDogsOkSelect = userClick.trim().toLowerCase();
+	if(userDogsOkSelect === "no preference") {
+		localStorage.removeItem("dogs-ok");
+	} else {
+		localStorage.setItem("dogs-ok", JSON.stringify(userDogsOkSelect));
+	}
+}
+// STORES USER INPUT ON KIDS OK SELECTION
+function storeKidsOkSelect(userClick) {
+	let userKidsOkSelect = userClick.trim().toLowerCase();
+	if(userKidsOkSelect === "no preference") {
+		localStorage.removeItem("kids-ok");
+	} else {
+		localStorage.setItem("kids-ok", JSON.stringify(userKidsOkSelect));
+	}
+}
+// STORES USER INPUT FOR GENDER
+function storeGenderSelect(userClick) {
+	let userGenderSelect = userClick.trim().toLowerCase();
+	if(userGenderSelect === "no preference") {
+		localStorage.removeItem("gender");
+	} else {
+		localStorage.setItem("gender", JSON.stringify(userGenderSelect));
+	}
+}
+// STORES USER INPUT FOR SIZE
+function storeSizeSelect(userSizeSelect) {
+	localStorage.setItem("size", JSON.stringify(userSizeSelect));
+}
+// STORES USER INPUT FOR AGE
+function storeAgeSelect(userAgeSelect) {
+	localStorage.setItem("age", JSON.stringify(userAgeSelect));
+}
+// STORES USER INPUT FOR DISTANCE
+function storeDistanceValue(distanceValue) {
+	localStorage.setItem("distance", JSON.stringify(distanceValue));
+}
+// CREATE ANIMAL PROFILE CARDS
+function userInputAnimalSearch(response) {
+	let dogImgID;
+	let dogImg;
+	for (let i = 0; i < response.data.length; i++) {
+		dogImgID = response.data[i].relationships.pictures.data[0].id;
+		for (let j = 0; j < response.included.length; j++) {
+			let dogImgOptions = response.included[j].id;
+			if (dogImgOptions === dogImgID) {
+				dogImg = response.included[j].attributes.original.url;
+			}
+		}
 		let dogName = response.data[i].attributes.name;
 		let dogAgeGroup = response.data[i].attributes.ageGroup;
 		let dogGender = response.data[i].attributes.sex;
@@ -89,7 +172,7 @@ $.ajax({
 		let descriptionContainer = $("<div></div>");
 		let dogProfileImage = $("<div></div>");
 		let dogProfileFacts = $("<div></div>");
-		let dogImageEl = $("<img>");
+		let dogImgEl = $("<img>");
 		let dogNameEl = $("<h3></h3>");
 		let dogAgeGroupEl = $("<h4></h4>");
 		let dogGenderEl = $("<h4></h4>");
@@ -101,8 +184,8 @@ $.ajax({
 		dogProfileImage.addClass("dog-profile-image padding-0 uk-card-media-left uk-cover-container");
 		dogProfileFacts.addClass("dog-profile-facts padding-0 uk-card-body");
 		descriptionContainer.addClass("description-container uk-card dark-background padding-20 uk-card-body");
-		dogImageEl.addClass("search-images uk-cover");
-		dogImageEl.attr("src", dogImage);
+		dogImgEl.addClass("search-images uk-cover");
+		dogImgEl.attr("src", dogImg);
 		dogNameEl.text("Name: " + dogName);
 		dogAgeGroupEl.text("Age Group: " + dogAgeGroup);
 		dogGenderEl.text("Gender: " + dogGender);
@@ -111,108 +194,17 @@ $.ajax({
 		cardContainer.append(profileCard);
 		profileCard.append(highlightContainer, descriptionContainer);
 		highlightContainer.append(dogProfileImage, dogProfileFacts);
-		dogProfileImage.append(dogImageEl);
+		dogProfileImage.append(dogImgEl);
 		dogProfileFacts.append(dogNameEl, dogAgeGroupEl, dogGenderEl, dogPrimaryBreedEl, dogSizeGroupEl);
 		descriptionContainer.append(dogDescriptionEl);
 	}
-});
-// Unchecks boxes in an option group so that only the user option is shown
-function onlyCheckUserSelect(checkedGroup) {
-	for(let i = 0; i < (checkedGroup.children).length; i++) {
-		let checkbox = (checkedGroup).children[i].children[0];
-		checkbox.checked = false;
-	}
 }
-// stores the user's input for breed
-function storeBreedSelect() {
-	let userBreedSelect = breedSelect[0].value;
-	localStorage.setItem("breed", JSON.stringify(userBreedSelect));
-}
-// stores the user's input for house training
-function storeHouseTrainedSelect(userClick) {
-	let userHouseTrainedSelect = userClick.trim().toLowerCase();
-	if(userHouseTrainedSelect === "no preference") {
-		localStorage.removeItem("house-trained");
-	} else {
-		localStorage.setItem("house-trained", JSON.stringify(userHouseTrainedSelect));
-	}
-}
-// stores the user's input for cats ok
-function storeCatsOkSelect(userClick) {
-	let userCatsOkSelect = userClick.trim().toLowerCase();
-	if(userCatsOkSelect === "no preference") {
-		localStorage.removeItem("cat-ok");
-	} else {
-		localStorage.setItem("cat-ok", JSON.stringify(userCatsOkSelect));
-	}
-}
-// stores the user's input for dogs ok
-function storeDogsOkSelect(userClick) {
-	let userDogsOkSelect = userClick.trim().toLowerCase();
-	if(userDogsOkSelect === "no preference") {
-		localStorage.removeItem("dogs-ok");
-	} else {
-		localStorage.setItem("dogs-ok", JSON.stringify(userDogsOkSelect));
-	}
-}
-// stores the user's input for kids ok
-function storeKidsOkSelect(userClick) {
-	let userKidsOkSelect = userClick.trim().toLowerCase();
-	if(userKidsOkSelect === "no preference") {
-		localStorage.removeItem("kids-ok");
-	} else {
-		localStorage.setItem("kids-ok", JSON.stringify(userKidsOkSelect));
-	}
-}
-// stores the user's input for gender
-function storeGenderSelect(userClick) {
-	let userGenderSelect = userClick.trim().toLowerCase();
-	if(userGenderSelect === "no preference") {
-		localStorage.removeItem("gender");
-	} else {
-		localStorage.setItem("gender", JSON.stringify(userGenderSelect));
-	}
-}
-// stores the user's input for size
-function storeSizeSelect(userSizeSelect) {
-	localStorage.setItem("size", JSON.stringify(userSizeSelect));
-}
-// stores the user's input for age
-function storeAgeSelect(userAgeSelect) {
-	localStorage.setItem("age", JSON.stringify(userAgeSelect));
-}
-// stores the user's input for distance
-function storeDistanceValue(distanceValue) {
-	localStorage.setItem("distance", JSON.stringify(distanceValue));
-}
-notEmptyBreed();
-
-function notEmptyBreed(searchBreed) {
-	if(storedBreedSelect !== null) {
-		searchBreed = ('{ "operation": "equals", "fieldName": "animals.breedPrimary", "criteria": "' + storedBreedSelect + '" }');
-		console.log(searchBreed);
-	}
-}
-// function to populate data for search page
-function searchPets() {
-	$.ajax({
-		url: rgUrl + "search/available/dogs/?limit=10",
-		method: "POST",
-		headers: {
-			"Authorization": rgKey,
-			"Content-Type": "application/vnd.api+json"
-		}
-	}).then(function(response) {
-		console.log(response);
-		// filter data with the user input
-		console.log("ajax searched");
-	});
-}
-// Event Listeners
+// ***** EVENT LISTENERS *****
+// STORES USER BREED SELECTION
 breedSelect.on("click", function() {
 	storeBreedSelect();
 });
-// only selects user's input for checkbox options
+// UNCHECKS ALL OPTIONS AND CHECKS BOX FOR USER SELECTION
 $(".uk-checkbox").on("click", function() {
 	let checkedGroup = ($(this).parent()).parent()[0];
 	let userClick = $(this)[0].nextSibling.textContent;
@@ -238,7 +230,7 @@ $(".uk-checkbox").on("click", function() {
 		this.checked = true;
 	}
 });
-// Changes text based on size selection
+// UPDATES SIZE TEXT BASED ON USER SELECTION
 sizeSelect.on("input", function(sizeText) {
 	sizeText = $(".size-text");
 	let userSizeSelect;
@@ -263,7 +255,7 @@ sizeSelect.on("input", function(sizeText) {
 		sizeText.text("Size Group: Extra Large");
 	}
 });
-// Changes text based on age selection
+// UPDATES AGE TEXT BASED ON USER SELECTION
 ageSelect.on("input", function(ageText) {
 	ageText = $(".age-text");
 	let userAgeSelect;
@@ -288,11 +280,10 @@ ageSelect.on("input", function(ageText) {
 		ageText.text("Age Group: Senior");
 	}
 });
-// Changes text based on distance option
+// UPDATES DISTANCE TEXT BASED ON USER SELECTION
 distanceSelect.on("input", function(distanceText, distanceValue) {
 	distanceText = $(".distance-text");
 	distanceValue = parseInt(this.value);
-	console.log(distanceValue);
 	distanceText.text("Distance: " + distanceValue + " Miles");
 	storeDistanceValue(distanceValue);
 	if(distanceValue === 0) {
