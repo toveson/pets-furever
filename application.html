@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -231,5 +232,163 @@
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
     <script src="assets/script.js"></script>
 </body>
+
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- UIKIT CSS STYLESHEET -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css">
+		<!-- GOOGLE FONTS STYLESHEET -->
+		<link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+		<!-- PROJECT STYLESHEET -->
+		<link rel="stylesheet" href="./assets/styles.css">
+		<title>Adoption Application</title>
+	</head>
+	<body>
+		<!-- NAVBAR/HEADER -->
+		<header>
+			<nav class="uk-navbar-container uk-navbar dark-background padding-20">
+				<div class="uk-navbar-left"><a class="logo" href="index.html"><img src="./images/logo.png" alt="white dog paw"></a></div>
+				<div class="uk-navbar-center">
+					<h1>Pets Furever</h1>
+				</div>
+				<div class="uk-navbar-right"><a href="#offcanvas-slide" class="uk-button uk-button-default" uk-toggle>About Us</a></div>
+			</nav>
+		</header>
+		<!-- ABOUT US MENU -->
+		<div id="offcanvas-slide" uk-offcanvas>
+			<div class="uk-offcanvas-bar">
+				<ul class="uk-nav uk-nav-default">
+					<!-- ABOUT PETS FUREVER -->
+					<li class="uk-nav-header">Pets Furever</li>
+					<li><p>All of us at Pets Furever have dogs and are passionate about making sure every dog has a home.</p></li>
+					<li><p>Pets furever is a very functional, easy-to-use application that makes adopting a pet simple and fun.</p></li>
+					<li><p>We are passionate about making sure every dog has a furever home.</p></li>
+					<li><p>Pets Furever used Rescue Group API to present the user all the dogs in their area that are in need of a loving home</p></li>
+					<!-- PETS FUREVER PAGE LINKS -->
+					<li class="uk-nav-header">Links</li>
+					<li class="uk-active"><a href="index.html">| Home |</a></li>
+					<li><a href="application.html">Adoption Application</a></li>
+					<li><a href="recipes.html">Pet Food Recipes</a></li>
+					<!-- COMING SOON -->
+					<li class="uk-nav-header">Coming Soon</li>
+					<li><a href="#">Search more than dogs</a></li>
+					<li><a href="#">adoption stories</a></li>
+					<!-- CREATED BY -->
+					<li class="uk-nav-header">Made by:</li>
+					<li>
+						<p>Diana Shull, Molly Sweetman and Trever Oveson.</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="uk-container dark-background padding-20 center-main-content">
+			<!-- DOG NAME FORM INPUT -->
+			<form class="uk-form-stacked">
+				<legend class="uk-legend">Adopt Your Best Friend Today!</legend>
+				<div class="uk-margin">
+					<div>Pet's Name</div>
+					<input class="uk-input form-input-select" type="text" placeholder="Fido">
+				</div>
+				<!-- CONTACT INFO FORM INPUT -->
+				<div class="uk-margin">
+					<fieldset class="uk-fieldset">
+						<legend class="uk-legend">Contact Information</legend>
+						<div class="uk-margin">
+							<div>Full Name</div>
+							<input class="uk-input form-input-select" type="text" placeholder="Name">
+						</div>
+						<div class="uk-margin">
+							<div>Address 1</div>
+							<input class="uk-input form-input-select" type="text" placeholder="Address">
+						</div>
+						<div class="uk-margin">
+							<div>Address 2</div>
+							<input class="uk-input form-input-select" type="text" placeholder="Address">
+						</div>
+						<div class="uk-margin">
+							<div>City</div>
+							<input class="uk-input form-input-select" type="text" placeholder="City">
+						</div>
+						<div class="uk-margin">
+							<div>State</div>
+							<input class="uk-input form-input-select" type="text" placeholder="State">
+						</div>
+						<div class="uk-margin">
+							<div>Zip Code</div>
+							<input class="uk-input form-input-select" type="text" placeholder="Zip Code">
+						</div>
+						<div class="uk-margin">
+							<div>Phone Number</div>
+							<input class="uk-input form-input-select" type="text" placeholder="Phone Number">
+						</div>
+						<div class="uk-margin">
+							<div>E-mail Address</div>
+							<input class="uk-input form-input-select" type="text" placeholder="E-mail Address">
+						</div>
+					</fieldset>
+					<!-- HOUSEHOLD INFO FORM INPUT -->
+					<fieldset class="uk-fieldset">
+						<legend class="uk-legend">Household Information</legend>
+						<div class="uk-margin">
+							<div class="uk-form-label dark-background">Do you own or rent your home?</div>
+							<div class="uk-form-controls">
+								<label><input class="uk-radio" type="radio" name="radio1"> Own</label><br>
+								<label><input class="uk-radio" type="radio" name="radio1"> Rent</label>
+							</div>
+						</div>
+						<div class="uk-margin">
+							<div class="uk-form-label dark-background">If renting, are animals allowed?</div>
+							<div class="uk-form-controls">
+								<label><input class="uk-radio" type="radio" name="radio1"> Yes</label><br>
+								<label><input class="uk-radio" type="radio" name="radio1"> No</label>
+							</div>
+						</div>
+						<div class="uk-margin">
+							<div class="uk-form-label dark-background">Do you have a backyard?</div>
+							<div class="uk-form-controls">
+								<label><input class="uk-radio" type="radio" name="radio1"> Yes</label><br>
+								<label><input class="uk-radio" type="radio" name="radio1"> No</label>
+							</div>
+						</div>
+						<div class="uk-margin">
+							<div class="uk-form-label dark-background">If so, is it fenced?</div>
+							<div class="uk-form-controls">
+								<label><input class="uk-radio" type="radio" name="radio1"> Yes</label><br>
+								<label><input class="uk-radio" type="radio" name="radio1"> No</label>
+							</div>
+						</div>
+						<div class="uk-margin">
+							<div>Please indicate how many adults live in the home:</div>
+							<input class="uk-input form-input-select" type="text" placeholder="Name">
+						</div>
+						<div class="uk-margin">
+							<div>Please indicate how many children live in the home:</div>
+							<input class="uk-input form-input-select" type="text" placeholder="Address">
+						</div>
+						<div class="uk-margin">
+							<div class="uk-form-label dark-background">Are all members of the household in agreement about adopting a dog?</div>
+							<div class="uk-form-controls">
+								<label><input class="uk-radio" type="radio" name="radio1"> Yes</label><br>
+								<label><input class="uk-radio" type="radio" name="radio1"> No</label>
+							</div>
+						</div>
+					</fieldset>
+					<div>
+						<button class="uk-button uk-button-default">Submit</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- JQUERY SCRIPT -->
+		<script src="https://code.jquery.com/jquery-3.5.1.js"
+			integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+		<!-- UIKIT SCRIPT -->
+		<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+		<!-- PROJECT SCRIPT -->
+		<script src="assets/script.js"></script>
+	</body>
 
 </html>
