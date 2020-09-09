@@ -17,7 +17,12 @@
       <nav class="uk-navbar-container uk-navbar dark-background padding-20">
          <div class="uk-navbar-left"><a class="logo" href="index.html"><img src="./images/logo.png" alt="white dog paw"></a></div>
          <div class="uk-navbar-center"><h1>Pets Furever</h1></div>
-         <div class="uk-navbar-right"><a href="#offcanvas-slide" class="uk-button uk-button-default" uk-toggle>About Us</a></div>
+		<div class="uk-navbar-right">
+            <ul class="uk-navbar-nav uk-visible@s">
+                <a href="#offcanvas-slide" class="uk-button uk-button-default" uk-toggle>About Us</a>
+            </ul>
+            <a href="#offcanvas-slide" class="uk-navbar-toggle uk-hidden@s hamburger" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-slide"></a>
+        </div>
       </nav>
    </header>
    <!-- ABOUT US MENU -->
@@ -33,10 +38,10 @@
          <!-- PETS FUREVER PAGE LINKS -->
          <li class="uk-nav-header">Links</li>
          <li class="uk-active"><a href="index.html">| Home |</a></li>
-         <li><a href="application.html">Adoption Application</a></li>
          <li><a href="recipes.html">Pet Food Recipes</a></li>
          <!-- COMING SOON -->
          <li class="uk-nav-header">Coming Soon</li>
+         <li><a href="application.html">Adoption Application</a></li>
          <li><a href="#">Search more than dogs</a></li>
          <li><a href="#">adoption stories</a></li>
          <!-- CREATED BY -->
