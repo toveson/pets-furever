@@ -4,7 +4,8 @@
 * [Technologies](#technology)
 * [Home page](#landing-page)
 * [Collaborators](#collaborators)
-* [Links](#links)
+* [Pets Furever Website](#website-link)
+* [Links](#other-links)
 
 ## Pets Furever
 
@@ -19,6 +20,8 @@ With the global pandemic happening, there has been a rise in interest of individ
 
 ## Home Page
 ![Home page](./images/pets-furever.PNG)
+
+[Pets Furever Website](toveson.github.io/pets-furever/) is hosted on github pages
 
 
 ## Collaborators
