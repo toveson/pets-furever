@@ -73,6 +73,9 @@
   .dog-profile-card {
     margin-bottom: 20px;
   }
+  .highlight-container {
+    padding-bottom: 0;
+  }
   .dog-profile-image {
     width: 45%;
     min-height: 400px;
