@@ -10,6 +10,7 @@
     font-family: 'Kumbh Sans', sans-serif!important; 
   }
   h1 {
+    text-align: center;
     color: #E4DED5;
     margin: 0;
     font-family: 'Kumbh Sans', sans-serif;
@@ -57,7 +58,7 @@
   height: 125px;
   }
   /* user options for dogs */
-  .breed-select {
+  .form-input-select {
     background-color:  #E4DED5;
   }
   .uk-checkbox:checked, ::selection {
