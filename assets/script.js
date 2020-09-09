@@ -37,13 +37,13 @@ function atRiskPets() {
 			"Authorization": rgKey,
 		},
 	}).then(function(response, imgLi, petImgEl) {
-    console.dir(response);
+		console.dir(response);
 		for(let i = 0; i < response.data.length; i++) {
-			petImg = response.data[i].attributes.pictureThumbnailUrl;
-      		imgLi = $("<li></li>");
+			let petImg = response.data[i].attributes.pictureThumbnailUrl;
+			imgLi = $("<li></li>");
 			imgLi.addClass("at-risk-li");
 			petImgEl = $("<img>");
-      		petImgEl.attr("src", petImg);
+			petImgEl.attr("src", petImg);
 			$(".at-risk").append(imgLi);
 			imgLi.append(petImgEl);
 		}
@@ -74,52 +74,47 @@ $.ajax({
 		"Content-Type": "application/vnd.api+json",
 		"Authorization": rgKey,
 	}
-	}).then(function(response) {
-		for(let i = 0; i < response.data.length; i++) {
-			let dogImage = response.data[i].attributes.pictureThumbnailUrl;
-			let dogName = response.data[i].attributes.name;
-			let dogAgeGroup = response.data[i].attributes.ageGroup;
-			let dogGender = response.data[i].attributes.sex;
-			let dogPrimaryBreed = response.data[i].attributes.breedPrimary;
-			let dogSizeGroup = response.data[i].attributes.sizeGroup;
-			let dogDescription = response.data[i].attributes.descriptionText;
-
-			let cardContainer = $(".card-container");
-			let profileCard = $("<div></div>");
-			let highlightContainer = $("<div></div>");
-			let descriptionContainer = $("<div></div>");
-
-			let dogProfileImage = $("<div></div>");
-			let dogProfileFacts = $("<div></div>");
-			
-			let dogImageEl = $("<img>");
-			let dogNameEl = $("<h3></h3>");
-			let dogAgeGroupEl = $("<h4></h4>");
-			let dogGenderEl = $("<h4></h4>");
-			let dogPrimaryBreedEl = $("<h4></h4>");
-			let dogSizeGroupEl = $("<h4></h4>");
-			let dogDescriptionEl = $("<p>" + dogDescription + "</p>");
-
-			profileCard.addClass("dog-profile-card");
-			highlightContainer.addClass("hightlight-container uk-card uk-card-default uk-child-width-1-2 uk-grid uk-margin-remove");
-			dogProfileImage.addClass("dog-profile-image uk-card-media-left uk-cover-container")
-			dogProfileFacts.addClass("dog-profile-facts uk-card-body")
-			descriptionContainer.addClass("description-container uk-card uk-card-body");
-			dogImageEl.addClass("search-images uk-cover");
-			dogImageEl.attr("src", dogImage);
-			dogNameEl.text("Name: " + dogName);
-			dogAgeGroupEl.text("Age Group: " + dogAgeGroup);
-			dogGenderEl.text("Gender: " + dogGender);
-			dogPrimaryBreedEl.text("Primary Breed: " + dogPrimaryBreed);
-			dogSizeGroupEl.text("Size Group: " + dogSizeGroup);
-
-			cardContainer.append(profileCard);
-			profileCard.append(highlightContainer, descriptionContainer);
-			highlightContainer.append(dogProfileImage, dogProfileFacts);
-			dogProfileImage.append(dogImageEl);
-			dogProfileFacts.append(dogNameEl, dogAgeGroupEl, dogGenderEl, dogPrimaryBreedEl, dogSizeGroupEl);
-			descriptionContainer.append(dogDescriptionEl);
-		}
+}).then(function(response) {
+	for(let i = 0; i < response.data.length; i++) {
+		let dogImage = response.data[i].attributes.pictureThumbnailUrl;
+		let dogName = response.data[i].attributes.name;
+		let dogAgeGroup = response.data[i].attributes.ageGroup;
+		let dogGender = response.data[i].attributes.sex;
+		let dogPrimaryBreed = response.data[i].attributes.breedPrimary;
+		let dogSizeGroup = response.data[i].attributes.sizeGroup;
+		let dogDescription = response.data[i].attributes.descriptionText;
+		let cardContainer = $(".dog-card-container");
+		let profileCard = $("<div></div>");
+		let highlightContainer = $("<div></div>");
+		let descriptionContainer = $("<div></div>");
+		let dogProfileImage = $("<div></div>");
+		let dogProfileFacts = $("<div></div>");
+		let dogImageEl = $("<img>");
+		let dogNameEl = $("<h3></h3>");
+		let dogAgeGroupEl = $("<h4></h4>");
+		let dogGenderEl = $("<h4></h4>");
+		let dogPrimaryBreedEl = $("<h4></h4>");
+		let dogSizeGroupEl = $("<h4></h4>");
+		let dogDescriptionEl = $("<p>" + dogDescription + "</p>");
+		profileCard.addClass("dog-profile-card");
+		highlightContainer.addClass("hightlight-container uk-card dark-background padding-20 uk-child-width-1-2 uk-grid uk-margin-remove");
+		dogProfileImage.addClass("dog-profile-image padding-0 uk-card-media-left uk-cover-container");
+		dogProfileFacts.addClass("dog-profile-facts padding-0 uk-card-body");
+		descriptionContainer.addClass("description-container uk-card dark-background padding-20 uk-card-body");
+		dogImageEl.addClass("search-images uk-cover");
+		dogImageEl.attr("src", dogImage);
+		dogNameEl.text("Name: " + dogName);
+		dogAgeGroupEl.text("Age Group: " + dogAgeGroup);
+		dogGenderEl.text("Gender: " + dogGender);
+		dogPrimaryBreedEl.text("Primary Breed: " + dogPrimaryBreed);
+		dogSizeGroupEl.text("Size Group: " + dogSizeGroup);
+		cardContainer.append(profileCard);
+		profileCard.append(highlightContainer, descriptionContainer);
+		highlightContainer.append(dogProfileImage, dogProfileFacts);
+		dogProfileImage.append(dogImageEl);
+		dogProfileFacts.append(dogNameEl, dogAgeGroupEl, dogGenderEl, dogPrimaryBreedEl, dogSizeGroupEl);
+		descriptionContainer.append(dogDescriptionEl);
+	}
 });
 // Unchecks boxes in an option group so that only the user option is shown
 function onlyCheckUserSelect(checkedGroup) {
@@ -311,4 +306,4 @@ searchBtn.on("click", function() {
 // function to get user selections
 // use click listeners on each selection and stores in the variables
 //function to fetch API data based on user selections
-//function to populate html elements based on reponse
+//function to populate html elements based on response

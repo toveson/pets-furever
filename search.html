@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,57 +12,41 @@
 		<title>Pet Search Results</title>
 	</head>
 	<body>
-		<!-- HEADER -->
+		<!-- NAVBAR/HEADER -->
 		<header>
-			<nav class="uk-navbar-container uk-background-primary" uk-navbar>
-				<div class="uk-navbar-left">
-					<img class="logo" src="./images/logo.png" alt="white dog paw">
-				</div>
-				<div class="uk-navbar-center">
-					<h1>Pets Furever</h1>
-				</div>
-				<div class="uk-navbar-right">
-					<a href="#offcanvas-slide" class="uk-button uk-button-default" uk-toggle>About Us</a>
-				</div>
+			<nav class="uk-navbar-container uk-navbar dark-background padding-20">
+				<div class="uk-navbar-left"><a class="logo" href="index.html"><img src="./images/logo.png" alt="white dog paw"></a></div>
+				<div class="uk-navbar-center"><h1>Pets Furever</h1></div>
+				<div class="uk-navbar-right"><a href="#offcanvas-slide" class="uk-button uk-button-default" uk-toggle>About Us</a></div>
 			</nav>
 		</header>
-		<!-- ABOUT US -->
+		<!-- ABOUT US MENU -->
 		<div id="offcanvas-slide" uk-offcanvas>
 			<div class="uk-offcanvas-bar">
 				<ul class="uk-nav uk-nav-default">
-					<!-- OUR BACKSTORY -->
-					<li class="uk-nav-header">Pets Furever</li>
-					<li>
-						<p>All of us at Pets Furever have dogs and are passionate about making sure every dog has a home.</p>
-					</li>
-					<li>
-						<p>Pets furever is a very functional, easy-to-use application that makes adopting a pet simple and fun.</p>
-					</li>
-					<li>
-						<p>We are passionate about making sure every dog has a furever home.</p>
-					</li>
-					<li>
-						<p>Pets Furever used Rescue Group API to present the user all the dogs in their area that are in need of a loving home</p>
-					</li>
-					<!-- NAVIGATE THE SITE -->
-					<li class="uk-nav-header">Links</li>
-					<li class="uk-active"><a href="index.html">| Home |</a></li>
-					<li><a href="application.html">Adoption Application</a></li>
-					<li><a href="recipes.html">Pet Food Recipes</a></li>
-					<!-- ADDITIONS TO THE PROJECT COMING SOON -->
-					<li class="uk-nav-header">Coming Soon</li>
-					<li><a href="#">Search more than dogs</a></li>
-					<li><a href="#">adoption stories</a></li>
-					<!-- MADE BY -->
-					<li class="uk-nav-header">Made by:</li>
-					<li>
-						<p>Diana Shull, Molly Sweetman and Trever Oveson.</p>
-					</li>
+				<!-- ABOUT PETS FUREVER -->
+				<li class="uk-nav-header">Pets Furever</li>
+				<li><p>All of us at Pets Furever have dogs and are passionate about making sure every dog has a home.</p></li>
+				<li><p>Pets furever is a very functional, easy-to-use application that makes adopting a pet simple and fun.</p></li>
+				<li><p>We are passionate about making sure every dog has a furever home.</p></li>
+				<li><p>Pets Furever used Rescue Group API to present the user all the dogs in their area that are in need of a loving home</p></li>
+				<!-- PETS FUREVER PAGE LINKS -->
+				<li class="uk-nav-header">Links</li>
+				<li class="uk-active"><a href="index.html">| Home |</a></li>
+				<li><a href="application.html">Adoption Application</a></li>
+				<li><a href="recipes.html">Pet Food Recipes</a></li>
+				<!-- COMING SOON -->
+				<li class="uk-nav-header">Coming Soon</li>
+				<li><a href="#">Search more than dogs</a></li>
+				<li><a href="#">adoption stories</a></li>
+				<!-- CREATED BY -->
+				<li class="uk-nav-header">Made by:</li>
+				<li><p>Diana Shull, Molly Sweetman and Trever Oveson.</p></li>
 				</ul>
 			</div>
 		</div>
 		<!-- CARD CONTAINER -->
-		<section class="card-container uk-align-center">
+		<section class="dog-card-container center-main-content">
 			<!-- DYNAMIC DOG DATA GOES HERE -->
 		</section>
 		<!-- JQUERY SCRIPT -->
@@ -75,65 +58,4 @@
 		<!-- PERSONAL SCRIPT -->
 		<script src="assets/script.js"></script>
 	</body>
-=======
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <!-- UIkit CSS -->
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
-      <link rel="stylesheet" href="./assets/styles.css"/>
-      <title>Search Pets Furever</title>
-   </head>
-   <body>
-      <!-- Navbar -->
-      <nav class="uk-navbar uk-navbar-container uk-background-primary">
-         <div class="uk-navbar-left">
-            <a class="logo" href="#">
-            <img src="./images/logo.png" alt="white dog paw">
-            </a>
-         </div>
-         <div class="uk-navbar-center">
-            <h1>Pets Furever</h1>
-         </div>
-         <div class="uk-navbar-right">
-            <a href="#offcanvas-slide" class="uk-button uk-button-default">About Us</a>
-         </div>
-      </nav>
-      <section class="content-container uk-padding"></section>
-      <!-- <ul class="uk-pagination uk-flex-center" uk-margin>
-         <li><a href="#"><span uk-pagination-previous></span></a></li>
-         <li><a href="#">1</a></li>
-         <li class="uk-disabled"><span>...</span></li>
-         <li><a href="#">5</a></li>
-         <li><a href="#">6</a></li>
-         <li class="uk-active"><span>7</span></li>
-         <li><a href="#">8</a></li>
-         <li><a href="#"><span uk-pagination-next></span></a></li>
-         </ul> -->
-      <!-- about us menu -->
-      <div id="offcanvas-slide">
-         <div class="uk-offcanvas-bar">
-            <ul class="uk-nav uk-nav-default">
-               <!-- put our info here -->
-               <li class="uk-active"><a href="#">Active</a></li>
-               <li><a href="#">Item</a></li>
-               <li class="uk-nav-header">Header</li>
-               <li><a href="#">Item</a></li>
-               <li><a href="#">Item</a></li>
-               <li class="uk-nav-divider"></li>
-               <li><a href="#">Item</a></li>
-            </ul>
-         </div>
-      </div>
-      <!-- UIkit JS -->
-      <script src="https://code.jquery.com/jquery-3.5.1.js"
-         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
-      <script src="assets/script.js"></script>
-   </body>
-
-=======
-
-
 </html>
