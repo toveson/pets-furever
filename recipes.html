@@ -14,20 +14,17 @@
 <body>
     <!-- Navbar -->
 	<header>
-		<nav class="uk-navbar-container uk-navbar dark-background padding-20">
-			<div class="uk-navbar-left"><a class="logo" href="index.html"><img src="./images/logo.png"
-						alt="white dog paw"></a></div>
-			<div class="uk-navbar-center">
-				<h1>Pets Furever</h1>
-			</div>
-			<div class="uk-navbar-right">
-				<ul class="uk-navbar-nav uk-visible@s">
-					<a href="#offcanvas-slide" class="uk-button uk-button-default" uk-toggle>About Us</a>
-				</ul>
-				<a href="#offcanvas-slide" class="uk-navbar-toggle uk-hidden@s" uk-navbar-toggle-iconuk-toggle="target: #offcanvas-slide"></a>
-			</div>
-		</nav>
-	</header>
+        <nav class="uk-navbar-container uk-navbar dark-background padding-20">
+           <div class="uk-navbar-left"><a class="logo" href="index.html"><img src="./images/logo.png" alt="white dog paw"></a></div>
+           <div class="uk-navbar-center"><h1>Pets Furever</h1></div>
+          <div class="uk-navbar-right">
+              <ul class="uk-navbar-nav uk-visible@s">
+                  <a href="#offcanvas-slide" class="uk-button uk-button-default" uk-toggle>About Us</a>
+              </ul>
+              <a href="#offcanvas-slide" class="uk-navbar-toggle uk-hidden@s hamburger" uk-navbar-toggle-icon uk-toggle="target: #offcanvas-slide"></a>
+          </div>
+        </nav>
+     </header>
     <!-- about us menu -->
 	<div id="offcanvas-slide" uk-offcanvas>
 		<div class="uk-offcanvas-bar">
@@ -40,11 +37,11 @@
 				<li><p>Pets Furever used Rescue Group API to present the user all the dogs in their area that are in need of a loving home</p></li>
 				
 				<li class="uk-nav-header">Links</li>
-				<li class="uk-active"><a href="index.html">| Home |</a></li>
-				<li><a href="application.html">Adoption Application</a></li>
-				<li><a href="recipes.html">Pet Food Recipes</a></li>
+				<li><a href="index.html">Home</a></li>
+				<li class="uk-active"><a href="recipes.html">| Pet Food Recipes |</a></li>
 				
 				<li class="uk-nav-header">Coming Soon</li>
+				<li><a href="application.html">Adoption Application</a></li>
 				<li><a href="#">Search more than dogs</a></li>
 				<li><a href="#">adoption stories</a></li>
 				
@@ -53,28 +50,6 @@
 			</ul>
 		</div>
 	</div>
-    
-
-
-    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
-        <div class="uk-card-media-left uk-cover-container">
-            <a href="https://www.allrecipes.com/recipe/140286/homemade-dog-food/">
-                <img src="images/allrecipes.webp" alt="Dog Food" uk-cover>
-            </a>
-            <canvas width="600" height="400"></canvas>
-        </div>
-        <div>
-            <div class="uk-card-body">
-                <h3 class="uk-card-title">Recipe</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p>
-            </div>
-            <div class="uk-navbar-center">
-                <h1>Pets Furever</h1>
-            </div>
-            <div class="uk-navbar-right"> <a href="#offcanvas-slide" class="uk-button uk-button-default" uk-toggle>About Us</a> </div>
-        </nav>
-    </div>
-
     <!-- about us menu -->
     <div id="offcanvas-slide" uk-offcanvas>
         <div class="uk-offcanvas-bar">
