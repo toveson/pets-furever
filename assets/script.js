@@ -40,6 +40,17 @@ function breedAPICall() {
 // POPULATE RESPONSE FOR DOG SELECTION
 
 function atRiskAPICall() {
+	let data = {
+		"data": {
+			"filters": [
+				{
+				"fieldName": "animals.priority",
+				"operation": "lessthan",
+				"criteria": 1
+				}
+			]
+		}
+	};
 	$.ajax({
 		url: rgUrl + "search/available/dogs/?include=pictures",
 		method: "POST",
@@ -47,15 +58,7 @@ function atRiskAPICall() {
 			"Content-Type": "application/vnd.api+json",
 			"Authorization": rgKey,
 		},
-		// data: {
-		// 	"filters": [
-		// 		{
-		// 			"fieldName": "animals.priority",
-		// 			"operation": "lessthan",
-		// 			"criteria": 1
-		// 		}       
-		// 	]
-		// }
+		data: JSON.stringify(data)
 	}).then(function(response) {
 		console.dir(response);
 		atRiskPets(response);
