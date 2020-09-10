@@ -1,29 +1,29 @@
-const rgUrl = "https://test1-api.rescuegroups.org/v5/public/animals/";
-const rgKey = "k4QortUC";
+var rgUrl = "https://test1-api.rescuegroups.org/v5/public/animals/";
+var rgKey = "k4QortUC";
 //search variables
-const breedSelect = $(".breed-select");
-const houseTrainedSelect = $(".house-trained")[0];
-const catsOkSelect = $(".cats-ok")[0];
-const dogsOkSelect = $(".dogs-ok")[0];
-const kidsOkSelect = $(".kids-ok")[0];
-const genderSelect = $(".gender-select")[0];
-const sizeSelect = $(".size-select");
-const ageSelect = $(".age-select");
-const distanceSelect = $(".distance-select");
-const searchBtn = $(".submit-search");
-const storedBreedSelect = JSON.parse(localStorage.getItem("breed"));
-const storedHouseTrainedSelect = JSON.parse(localStorage.getItem("house-trained"));
-const storedCatsOkSelect = JSON.parse(localStorage.getItem("cats-ok"));
-const storedDogsOkSelect = JSON.parse(localStorage.getItem("dogs-ok"));
-const storedKidsOkSelect = JSON.parse(localStorage.getItem("kids-ok"));
-const storedGenderSelect = JSON.parse(localStorage.getItem("gender"));
-const storedSizeSelect = JSON.parse(localStorage.getItem("size"));
-const storedAgeSelect = JSON.parse(localStorage.getItem("age"));
-const storedDistanceSelect = JSON.parse(localStorage.getItem("distance"));
+var breedSelect = $(".breed-select");
+var houseTrainedSelect = $(".house-trained")[0];
+var catsOkSelect = $(".cats-ok")[0];
+var dogsOkSelect = $(".dogs-ok")[0];
+var kidsOkSelect = $(".kids-ok")[0];
+var genderSelect = $(".gender-select")[0];
+var sizeSelect = $(".size-select");
+var ageSelect = $(".age-select");
+var distanceSelect = $(".distance-select");
+var searchBtn = $(".submit-search");
+var storedBreedSelect = JSON.parse(localStorage.getItem("breed"));
+var storedHouseTrainedSelect = JSON.parse(localStorage.getItem("house-trained"));
+var storedCatsOkSelect = JSON.parse(localStorage.getItem("cats-ok"));
+var storedDogsOkSelect = JSON.parse(localStorage.getItem("dogs-ok"));
+var storedKidsOkSelect = JSON.parse(localStorage.getItem("kids-ok"));
+var storedGenderSelect = JSON.parse(localStorage.getItem("gender"));
+var storedSizeSelect = JSON.parse(localStorage.getItem("size"));
+var storedAgeSelect = JSON.parse(localStorage.getItem("age"));
+var storedDistanceSelect = JSON.parse(localStorage.getItem("distance"));
 // GRAB API RESPONSES
 breedAPICall();
 atRiskAPICall();
-dogAPICall();
+userSearchAPICall();
 // POPULATE RESPONSE FOR BREED SELECTION
 function breedAPICall() {
 	$.ajax({
@@ -40,7 +40,7 @@ function breedAPICall() {
 // POPULATE RESPONSE FOR DOG SELECTION
 
 function atRiskAPICall() {
-	let data = {
+	var data = {
 		"data": {
 			"filters": [
 				{
@@ -52,7 +52,7 @@ function atRiskAPICall() {
 		}
 	};
 	$.ajax({
-		url: rgUrl + "search/available/dogs/?include=pictures",
+		url: rgUrl + "search/available/dogs/haspic?include=pictures&limit=50",
 		method: "POST",
 		headers: {
 			"Content-Type": "application/vnd.api+json",
@@ -63,31 +63,123 @@ function atRiskAPICall() {
 		atRiskPets(response);
 	});
 }
-function dogAPICall() {
+function userSearchAPICall() {
+	var breedCriteria;
+	var houseTrainedCriteria;
+	var catsOkCriteria;
+	var dogsOkCriteria;
+	var kidsOkCriteria;
+	var genderCriteria;
+	var sizeCriteria;
+	var ageCriteria;
+	var distanceCriteria;
+	var filterRadius = {
+		"miles": 250,
+		"postalcode": 90210
+	};
+	var filters = [];
+	if (storedBreedSelect !== null) {
+		breedCriteria = {
+			"fieldName": "animals.breedPrimary",
+			"operation": "equal",
+			"criteria": storedBreedSelect
+		};
+		filters.push(breedCriteria);
+
+	}
+	if (storedHouseTrainedSelect !== null) {
+		houseTrainedCriteria = {
+			"fieldName": "animals.isHousetrained",
+			"operation": "equal",
+			"criteria": storedHouseTrainedSelect
+		};
+		filters.push(houseTrainedCriteria);
+	}
+	if (storedCatsOkSelect !== null) {
+		catsOkCriteria = {
+			"fieldName": "animals.isCatsOk",
+			"operation": "equal",
+			"criteria": storedCatsOkSelect
+		};
+		filters.push(catsOkCriteria);
+	}
+	if (storedDogsOkSelect !== null) {
+		dogsOkCriteria = {
+			"fieldName": "animals.isDogsOk",
+			"operation": "equal",
+			"criteria": storedDogsOkSelect
+		};
+		filters.push(dogsOkCriteria);
+	}
+	if (storedKidsOkSelect !== null) {
+		kidsOkCriteria = {
+			"fieldName": "animals.isKidsOk",
+			"operation": "equal",
+			"criteria": storedKidsOkSelect
+		};
+	}
+	if (storedGenderSelect !== null) {
+		genderCriteria = {
+			"fieldName": "animals.sex",
+			"operation": "equal",
+			"criteria": storedGenderSelect
+		};
+		filters.push(genderCriteria);
+	}
+	if (storedSizeSelect !== null) {
+		sizeCriteria = {
+			"fieldName": "animals.sizeGroup",
+			"operation": "equal",
+			"criteria": storedSizeSelect
+		};
+		filters.push(sizeCriteria);
+	}
+	if (storedAgeSelect !== null) {
+		ageCriteria = {
+			"fieldName": "animals.ageGroup",
+			"operation": "equal",
+			"criteria": storedAgeSelect
+		};
+		filters.push(ageCriteria);
+	}
+	if (storedDistanceSelect !== null) {
+		distanceCriteria = {
+			"miles": storedDistanceSelect,
+			"postalcode": 90210
+		};
+		filterRadius = distanceCriteria;
+	}
+	var data = {
+		"data": {
+			"filterRadius": filterRadius,
+			"filters": filters
+		}
+	};
 	$.ajax({
-		url: rgUrl + "search/available/dogs/?include=pictures",
-		method: "GET",
+		url: rgUrl + "search/available/dogs/haspic?include=pictures&limit=50",
+		method: "POST",
 		headers: {
 			"Content-Type": "application/vnd.api+json",
 			"Authorization": rgKey,
 		},
+		data: JSON.stringify(data)
 	}).then(function(response) {
-		userInputAnimalSearch(response)
+		userInputAnimalSearch(response);
 	});
 }
 // CREATES IMAGE CAROUSEL FOR AT RISK DOGS
-function atRiskPets(response) {
-	let dogImgID;
-	let dogImg;
-	for (let i = 0; i < response.data.length; i++) {
+function atRiskPets(response, checkbox) {
+	var dogImgID;
+	var dogImg;
+	for (var i = 0; i < response.data.length; i++) {
 		dogImgID = response.data[i].relationships.pictures.data[0].id;
-		for (let j = 0; j < response.included.length; j++) {
-			let dogImgOptions = response.included[j].id;
+		for (var j = 0; j < response.included.length; j++) {
+			var dogImgOptions = response.included[j].id;
 			if (dogImgOptions === dogImgID) {
 				dogImg = response.included[j].attributes.original.url;
-				imgLi = $("<li></li>");
+				var imgLi = $("<li></li>");
 				imgLi.addClass("at-risk-li");
-				dogImgEl = $("<img>");
+				var dogImgEl = $("<img>");
 				dogImgEl.attr("src", dogImg);
 				$(".at-risk").append(imgLi);
 				imgLi.append(dogImgEl);
@@ -97,7 +189,7 @@ function atRiskPets(response) {
 }
 // POPULATES BREED OPTIONS
 function breedPop (response, breedOp, breedOpEl) {
-	for(let i = 0; i < response.data.length; i++) {
+	for(var i = 0; i < response.data.length; i++) {
 		breedOp = response.data[i].attributes.name;
 		breedOpEl = $("<option></option>");
 		breedOpEl.text(breedOp);
@@ -106,19 +198,19 @@ function breedPop (response, breedOp, breedOpEl) {
 }
 // PREVENT SELECTION OF MUTLIPLE CHOICES IN USER SELECTION OPTIONS
 function onlyCheckUserSelect(checkedGroup, checkbox) {
-	for(let i = 0; i < (checkedGroup.children).length; i++) {
-		let checkbox = (checkedGroup).children[i].children[0];
+	for(var i = 0; i < (checkedGroup.children).length; i++) {
+		checkbox = (checkedGroup).children[i].children[0];
 		checkbox.checked = false;
 	}
 }
 // STORES USER INPUT FOR BREED
 function storeBreedSelect() {
-	let userBreedSelect = breedSelect[0].value;
+	var userBreedSelect = breedSelect[0].value;
 	localStorage.setItem("breed", JSON.stringify(userBreedSelect));
 }
 // STORES USER INPUT FOR HOUSE TRAINING
 function storeHouseTrainedSelect(userClick) {
-	let userHouseTrainedSelect = userClick.trim().toLowerCase();
+	var userHouseTrainedSelect = userClick.trim().toLowerCase();
 	if(userHouseTrainedSelect === "no preference") {
 		localStorage.removeItem("house-trained");
 	} else {
@@ -127,16 +219,16 @@ function storeHouseTrainedSelect(userClick) {
 }
 // STORES USER INPUT ON CATS OK SELECTION
 function storeCatsOkSelect(userClick) {
-	let userCatsOkSelect = userClick.trim().toLowerCase();
+	var userCatsOkSelect = userClick.trim().toLowerCase();
 	if(userCatsOkSelect === "no preference") {
-		localStorage.removeItem("cat-ok");
+		localStorage.removeItem("cats-ok");
 	} else {
-		localStorage.setItem("cat-ok", JSON.stringify(userCatsOkSelect));
+		localStorage.setItem("cats-ok", JSON.stringify(userCatsOkSelect));
 	}
 }
 // STORES USER INPUT ON DOGS OK SELECTION
 function storeDogsOkSelect(userClick) {
-	let userDogsOkSelect = userClick.trim().toLowerCase();
+	var userDogsOkSelect = userClick.trim().toLowerCase();
 	if(userDogsOkSelect === "no preference") {
 		localStorage.removeItem("dogs-ok");
 	} else {
@@ -145,7 +237,7 @@ function storeDogsOkSelect(userClick) {
 }
 // STORES USER INPUT ON KIDS OK SELECTION
 function storeKidsOkSelect(userClick) {
-	let userKidsOkSelect = userClick.trim().toLowerCase();
+	var userKidsOkSelect = userClick.trim().toLowerCase();
 	if(userKidsOkSelect === "no preference") {
 		localStorage.removeItem("kids-ok");
 	} else {
@@ -154,7 +246,7 @@ function storeKidsOkSelect(userClick) {
 }
 // STORES USER INPUT FOR GENDER
 function storeGenderSelect(userClick) {
-	let userGenderSelect = userClick.trim().toLowerCase();
+	var userGenderSelect = userClick.trim().toLowerCase();
 	if(userGenderSelect === "no preference") {
 		localStorage.removeItem("gender");
 	} else {
@@ -175,47 +267,37 @@ function storeDistanceValue(distanceValue) {
 }
 // STORES USER INPUT FOR BREED
 
-// JSON.stringify(userBreedSelect);
-// JSON.stringify(userHouseTrainedSelect);
-// JSON.stringify(userCatsOkSelect);
-// JSON.stringify(userDogsOkSelect);
-// JSON.stringify(userKidsOkSelect);
-// JSON.stringify(userGenderSelect);
-// JSON.stringify(userSizeSelect)
-// (userAgeSelect)
-// JSON.stringify(userAgeSelect);
-// JSON.stringify(distanceValue);
 // CREATE ANIMAL PROFILE CARDS
 function userInputAnimalSearch(response) {
-	let dogImgID;
-	let dogImg;
-	for (let i = 0; i < response.data.length; i++) {
+	var dogImgID;
+	var dogImg;
+	for (var i = 0; i < response.data.length; i++) {
 		dogImgID = response.data[i].relationships.pictures.data[0].id;
-		for (let j = 0; j < response.included.length; j++) {
-			let dogImgOptions = response.included[j].id;
+		for (var j = 0; j < response.included.length; j++) {
+			var dogImgOptions = response.included[j].id;
 			if (dogImgOptions === dogImgID) {
 				dogImg = response.included[j].attributes.original.url;
 			}
 		}
-		let dogName = response.data[i].attributes.name;
-		let dogAgeGroup = response.data[i].attributes.ageGroup;
-		let dogGender = response.data[i].attributes.sex;
-		let dogPrimaryBreed = response.data[i].attributes.breedPrimary;
-		let dogSizeGroup = response.data[i].attributes.sizeGroup;
-		let dogDescription = response.data[i].attributes.descriptionText;
-		let cardContainer = $(".dog-card-container");
-		let profileCard = $("<div></div>");
-		let highlightContainer = $("<div></div>");
-		let descriptionContainer = $("<div></div>");
-		let dogProfileImage = $("<div></div>");
-		let dogProfileFacts = $("<div></div>");
-		let dogImgEl = $("<img>");
-		let dogNameEl = $("<h3></h3>");
-		let dogAgeGroupEl = $("<h4></h4>");
-		let dogGenderEl = $("<h4></h4>");
-		let dogPrimaryBreedEl = $("<h4></h4>");
-		let dogSizeGroupEl = $("<h4></h4>");
-		let dogDescriptionEl = $("<p>" + dogDescription + "</p>");
+		var dogName = response.data[i].attributes.name;
+		var dogAgeGroup = response.data[i].attributes.ageGroup;
+		var dogGender = response.data[i].attributes.sex;
+		var dogPrimaryBreed = response.data[i].attributes.breedPrimary;
+		var dogSizeGroup = response.data[i].attributes.sizeGroup;
+		var dogDescription = response.data[i].attributes.descriptionText;
+		var cardContainer = $(".dog-card-container");
+		var profileCard = $("<div></div>");
+		var highlightContainer = $("<div></div>");
+		var descriptionContainer = $("<div></div>");
+		var dogProfileImage = $("<div></div>");
+		var dogProfileFacts = $("<div></div>");
+		var dogImgEl = $("<img>");
+		var dogNameEl = $("<h3></h3>");
+		var dogAgeGroupEl = $("<h4></h4>");
+		var dogGenderEl = $("<h4></h4>");
+		var dogPrimaryBreedEl = $("<h4></h4>");
+		var dogSizeGroupEl = $("<h4></h4>");
+		var dogDescriptionEl = $("<p>" + dogDescription + "</p>");
 		profileCard.addClass("dog-profile-card");
 		highlightContainer.addClass("highlight-container uk-card dark-background padding-20 uk-child-width-1-2 uk-grid uk-margin-remove");
 		dogProfileImage.addClass("dog-profile-image padding-0 uk-card-media-left uk-cover-container");
@@ -243,8 +325,8 @@ breedSelect.on("click", function() {
 });
 // UNCHECKS ALL OPTIONS AND CHECKS BOX FOR USER SELECTION
 $(".uk-checkbox").on("click", function() {
-	let checkedGroup = ($(this).parent()).parent()[0];
-	let userClick = $(this)[0].nextSibling.textContent;
+	var checkedGroup = ($(this).parent()).parent()[0];
+	var userClick = $(this)[0].nextSibling.textContent;
 	if(checkedGroup === houseTrainedSelect) {
 		storeHouseTrainedSelect(userClick);
 		onlyCheckUserSelect(checkedGroup);
@@ -272,7 +354,7 @@ $(".uk-checkbox").on("click", function() {
 // UPDATES SIZE TEXT BASED ON USER SELECTION
 sizeSelect.on("input", function(sizeText) {
 	sizeText = $(".size-text");
-	let userSizeSelect;
+	var userSizeSelect;
 	if(parseInt(this.value) === 0) {
 		localStorage.removeItem("size");
 		sizeText.text("Size Group: No Preference");
@@ -297,7 +379,7 @@ sizeSelect.on("input", function(sizeText) {
 // UPDATES AGE TEXT BASED ON USER SELECTION
 ageSelect.on("input", function(ageText) {
 	ageText = $(".age-text");
-	let userAgeSelect;
+	var userAgeSelect;
 	if(parseInt(this.value) === 0) {
 		localStorage.removeItem("age");
 		ageText.text("Age Group: No Preference");
@@ -330,11 +412,7 @@ distanceSelect.on("input", function(distanceText, distanceValue) {
 		distanceText.text("Distance: No Preference");
 	}
 });
-searchBtn.on("click", function(event) {
-	event.preventDefault();
+searchBtn.on("click", function(localStorage) {
 	localStorage.clear();
+	userSearchAPICall(response);
 });
-// function to get user selections
-// use click listeners on each selection and stores in the variables
-//function to fetch API data based on user selections
-//function to populate html elements based on response
