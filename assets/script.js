@@ -22,6 +22,7 @@ const storedAgeSelect = JSON.parse(localStorage.getItem("age"));
 const storedDistanceSelect = JSON.parse(localStorage.getItem("distance"));
 // GRAB API RESPONSES
 breedAPICall();
+atRiskAPICall();
 dogAPICall();
 // POPULATE RESPONSE FOR BREED SELECTION
 function breedAPICall() {
@@ -37,6 +38,37 @@ function breedAPICall() {
 	});
 }
 // POPULATE RESPONSE FOR DOG SELECTION
+let filter = {
+	"filters": [
+		{
+			"fieldName": "animals.priority",
+			"operation": "lessthan",
+			"criteria": 1
+		}       
+	]
+}
+function atRiskAPICall() {
+	$.ajax({
+		url: rgUrl + "search/available/dogs/?include=pictures",
+		method: "POST",
+		headers: {
+			"Content-Type": "application/vnd.api+json",
+			"Authorization": rgKey,
+		},
+		// data: {
+		// 	"filters": [
+		// 		{
+		// 			"fieldName": "animals.priority",
+		// 			"operation": "lessthan",
+		// 			"criteria": 1
+		// 		}       
+		// 	]
+		// }
+	}).then(function(response) {
+		console.dir(response);
+		atRiskPets(response);
+	});
+}
 function dogAPICall() {
 	$.ajax({
 		url: rgUrl + "search/available/dogs/?include=pictures",
@@ -46,7 +78,6 @@ function dogAPICall() {
 			"Authorization": rgKey,
 		},
 	}).then(function(response) {
-		atRiskPets(response);
 		userInputAnimalSearch(response)
 	});
 }
