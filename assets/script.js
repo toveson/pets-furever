@@ -38,15 +38,7 @@ function breedAPICall() {
 	});
 }
 // POPULATE RESPONSE FOR DOG SELECTION
-let filter = {
-	"filters": [
-		{
-			"fieldName": "animals.priority",
-			"operation": "lessthan",
-			"criteria": 1
-		}       
-	]
-}
+
 function atRiskAPICall() {
 	$.ajax({
 		url: rgUrl + "search/available/dogs/?include=pictures",
@@ -111,9 +103,10 @@ function breedPop (response, breedOp, breedOpEl) {
 	}
 }
 // PREVENT SELECTION OF MUTLIPLE CHOICES IN USER SELECTION OPTIONS
-function onlyCheckUserSelect(checkedGroup) {
+function onlyCheckUserSelect(checkedGroup, checkbox) {
 	for(let i = 0; i < (checkedGroup.children).length; i++) {
 		let checkbox = (checkedGroup).children[i].children[0];
+		console.dir(checkbox)
 		checkbox.checked = false;
 	}
 }
@@ -239,6 +232,7 @@ breedSelect.on("click", function() {
 $(".uk-checkbox").on("click", function() {
 	let checkedGroup = ($(this).parent()).parent()[0];
 	let userClick = $(this)[0].nextSibling.textContent;
+	console.dir(checkedGroup)
 	if(checkedGroup === houseTrainedSelect) {
 		storeHouseTrainedSelect(userClick);
 		onlyCheckUserSelect(checkedGroup);
@@ -259,6 +253,8 @@ $(".uk-checkbox").on("click", function() {
 		storeGenderSelect(userClick);
 		onlyCheckUserSelect(checkedGroup);
 		this.checked = true;
+	} else {
+		onlyCheckUserSelect(checkedGroup, checkbox);
 	}
 });
 // UPDATES SIZE TEXT BASED ON USER SELECTION
