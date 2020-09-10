@@ -1,14 +1,27 @@
 /* UNIVERSAL STYLES */
   /* default element styling */
   body, html {
-    background-image: url("../images/hero-image.jpg");
+   /*  background-image: url("../images/hero-image.jpg");
+    height: 500px;
+    position: relative;
+    background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100%;
     letter-spacing: 2px;
-    font-family: 'Kumbh Sans', sans-serif!important; 
+    font-family: 'Kumbh Sans', sans-serif!important; */
   }
+ .hero-image{
+  background-image: url("../images/hero-image.jpg");
+    background-color: #cccccc;
+  height: 100%;
+  width: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  } 
   h1 {
     color: #E4DED5;
     margin: 0;
@@ -83,3 +96,4 @@
     margin: 0;
     padding-bottom: 5px;
   }
+
