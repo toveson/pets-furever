@@ -10,7 +10,7 @@ var genderSelect = $(".gender-select")[0];
 var sizeSelect = $(".size-select");
 var ageSelect = $(".age-select");
 var distanceSelect = $(".distance-select");
-var searchBtn = $(".submit-search");
+var submitSearch = $(".submit-search");
 var storedBreedSelect = JSON.parse(localStorage.getItem("breed"));
 var storedHouseTrainedSelect = JSON.parse(localStorage.getItem("house-trained"));
 var storedCatsOkSelect = JSON.parse(localStorage.getItem("cats-ok"));
@@ -164,11 +164,17 @@ function userSearchAPICall() {
 		},
 		data: JSON.stringify(data)
 	}).then(function(response) {
-		userInputAnimalSearch(response);
+		if (response.meta.count === 0) {
+			noDogFound();
+		} else {
+			userInputAnimalSearch(response);
+		}
+	console.log(response);
+		
 	});
 }
 // CREATES IMAGE CAROUSEL FOR AT RISK DOGS
-function atRiskPets(response, checkbox) {
+function atRiskPets(response) {
 	var dogImgID;
 	var dogImg;
 	for (var i = 0; i < response.data.length; i++) {
@@ -317,6 +323,31 @@ function userInputAnimalSearch(response) {
 		dogProfileFacts.append(dogNameEl, dogAgeGroupEl, dogGenderEl, dogPrimaryBreedEl, dogSizeGroupEl);
 		descriptionContainer.append(dogDescriptionEl);
 	}
+	clearLocalStorage();
+}
+function noDogFound() {
+	var cardContainer = $(".dog-card-container");
+	var errorCard = $("<div></div>");
+	var uhOh = $("<h2></h2>");
+	var searchAgain = $("<p></p>");
+	var searchBtnConatiner = $("<div></div>");
+	var searchBtn = $("<a></a>");
+	uhOh.text("Uh oh!");
+	searchAgain.text("It looks like no dogs match the search criteria. Please search again.");
+	searchBtn.text("Submit");
+	errorCard.addClass("uk-card dark-background padding-20");
+	uhOh.addClass("dark-background");
+	searchAgain.addClass("dark-background");
+	searchBtnConatiner.addClass("uk-margin");
+	searchBtn.addClass("uk-button uk-button-default");
+	searchBtn.attr("href", "./index.html");
+	cardContainer.append(errorCard);
+	errorCard.append(uhOh, searchAgain, searchBtnConatiner);
+	searchBtnConatiner.append(searchBtn);
+	localStorage.clear();
+}
+function clearLocalStorage() {
+	localStorage.clear();
 }
 // ***** EVENT LISTENERS *****
 // STORES USER BREED SELECTION
@@ -412,7 +443,6 @@ distanceSelect.on("input", function(distanceText, distanceValue) {
 		distanceText.text("Distance: No Preference");
 	}
 });
-searchBtn.on("click", function(localStorage) {
-	localStorage.clear();
+submitSearch.on("click", function(response) {
 	userSearchAPICall(response);
 });
