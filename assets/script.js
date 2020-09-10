@@ -10,7 +10,7 @@ const genderSelect = $(".gender-select")[0];
 const sizeSelect = $(".size-select");
 const ageSelect = $(".age-select");
 const distanceSelect = $(".distance-select");
-const searchBtn = $(".search-pets");
+const searchBtn = $(".submit-search");
 const storedBreedSelect = JSON.parse(localStorage.getItem("breed"));
 const storedHouseTrainedSelect = JSON.parse(localStorage.getItem("house-trained"));
 const storedCatsOkSelect = JSON.parse(localStorage.getItem("cats-ok"));
@@ -60,7 +60,6 @@ function atRiskAPICall() {
 		},
 		data: JSON.stringify(data)
 	}).then(function(response) {
-		console.dir(response);
 		atRiskPets(response);
 	});
 }
@@ -109,7 +108,6 @@ function breedPop (response, breedOp, breedOpEl) {
 function onlyCheckUserSelect(checkedGroup, checkbox) {
 	for(let i = 0; i < (checkedGroup.children).length; i++) {
 		let checkbox = (checkedGroup).children[i].children[0];
-		console.dir(checkbox)
 		checkbox.checked = false;
 	}
 }
@@ -175,6 +173,18 @@ function storeAgeSelect(userAgeSelect) {
 function storeDistanceValue(distanceValue) {
 	localStorage.setItem("distance", JSON.stringify(distanceValue));
 }
+// STORES USER INPUT FOR BREED
+
+// JSON.stringify(userBreedSelect);
+// JSON.stringify(userHouseTrainedSelect);
+// JSON.stringify(userCatsOkSelect);
+// JSON.stringify(userDogsOkSelect);
+// JSON.stringify(userKidsOkSelect);
+// JSON.stringify(userGenderSelect);
+// JSON.stringify(userSizeSelect)
+// (userAgeSelect)
+// JSON.stringify(userAgeSelect);
+// JSON.stringify(distanceValue);
 // CREATE ANIMAL PROFILE CARDS
 function userInputAnimalSearch(response) {
 	let dogImgID;
@@ -235,7 +245,6 @@ breedSelect.on("click", function() {
 $(".uk-checkbox").on("click", function() {
 	let checkedGroup = ($(this).parent()).parent()[0];
 	let userClick = $(this)[0].nextSibling.textContent;
-	console.dir(checkedGroup)
 	if(checkedGroup === houseTrainedSelect) {
 		storeHouseTrainedSelect(userClick);
 		onlyCheckUserSelect(checkedGroup);
@@ -321,8 +330,9 @@ distanceSelect.on("input", function(distanceText, distanceValue) {
 		distanceText.text("Distance: No Preference");
 	}
 });
-searchBtn.on("click", function() {
+searchBtn.on("click", function(event) {
 	event.preventDefault();
+	localStorage.clear();
 });
 // function to get user selections
 // use click listeners on each selection and stores in the variables
