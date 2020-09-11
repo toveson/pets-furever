@@ -223,12 +223,12 @@ function onlyCheckUserSelect(checkedGroup, checkbox) {
 	}
 }
 // STORES USER INPUT FOR BREED
-function storeBreedSelect(userBreedSelect, breedOp) {
+function storeBreedSelect() {
 	if (breedSelect[0].value !== "Click for breeds") {
 		var userBreedSelect = breedSelect[0].value;
 		localStorage.setItem("breed", JSON.stringify(userBreedSelect));	
 	}
-	breedCardAPICall()
+	breedCardAPICall();
 }
 // STORES USER INPUT FOR HOUSE TRAINING
 function storeHouseTrainedSelect(userClick) {
@@ -351,7 +351,7 @@ function noDogFound() {
 	var searchBtn = $("<a></a>");
 	uhOh.text("Uh oh!");
 	searchAgain.text("It looks like no dogs match the search criteria. Please search again.");
-	searchBtn.text("Submit");
+	searchBtn.text("Search Again");
 	errorCard.addClass("uk-card dark-background padding-20");
 	uhOh.addClass("dark-background");
 	searchAgain.addClass("dark-background");
@@ -369,9 +369,7 @@ function clearLocalStorage() {
 function createBreedCard(response) {
 	if (storedBreedSelect !== undefined) {
 		var breed = localStorage.getItem('breed')
-		console.log(breed)
 		var i = parseInt(localStorage.getItem('breed-id-' + breed));
-		console.log(i)
 		var breedResponse = response;
 		var breedName = breedResponse[i].name;
 		var bredFor = breedResponse[i].bred_for;
@@ -383,15 +381,17 @@ function createBreedCard(response) {
 		var bredForEl = $("<p></p>");
 		var lifeSpanEl = $("<p></p>");
 		var temperamentEl = $("<p></p>");
-		console.dir(petCard.text())
 		petCard.text("");
 		breedNameEl.text("About The " + breedName);
 		bredForEl.text("Bred For: " + bredFor);
 		lifeSpanEl.text("Life Span: " + lifeSpan);
 		temperamentEl.text("Temperament: " + temperament);
-		console.log(bredForEl, lifeSpanEl, temperament)
+		breedNameEl.addClass("dog-description");
+		bredForEl.addClass("dog-description");
+		lifeSpanEl.addClass("dog-description");
+		temperamentEl.addClass("dog-description");
 		petCard.append(breedInfoEl);
-		breedInfoEl.append(breedNameEl, bredForEl, lifeSpanEl, temperament);
+		breedInfoEl.append(breedNameEl, bredForEl, lifeSpanEl, temperamentEl);
 	}
 }		
 // ***** EVENT LISTENERS *****
