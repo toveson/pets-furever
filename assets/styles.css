@@ -19,6 +19,9 @@
     margin: 0;
     font-family: 'Kumbh Sans', sans-serif;
   }
+  .dog-description {
+    font-size: 0.7em;
+  }
   /* page basic styles */
   .dark-background {
     background-color: rgba(46, 46, 46, 0.9)!important;
@@ -85,7 +88,48 @@
   h3, h4 {
     color: #E4DED5!important;
     width: 75%;
-    margin: 0;
+    margin: 0 0 0 20px;
     padding-bottom: 5px;
   }
 
+@media (max-width: 1100px) {
+  body, html {
+    background-image: url("../images/hero-image-large.jpg");
+  }
+  .dog-description {
+    font-size: 0.6em;
+  }
+  .logo {
+    width: 8%;
+  }
+  .dog-profile-image {
+    width: 33%;
+  }
+  .search-images {
+    height: 80%;
+    float: left;
+    object-fit: cover;
+    overflow: hidden;
+  }
+}
+@media (max-width: 900px) {
+  body, html {
+    background-image: url("../images/hero-image-medium.jpg");
+  }
+  .dog-description {
+    font-size: 0.6em;
+  }
+  .logo {
+    width: 8%;
+  }
+  .dog-profile-image {
+    width: 33%;
+  }
+  .search-images {
+    height: 60%;
+
+    float: left;
+    object-fit: cover;
+    overflow: hidden;
+  }
+}
