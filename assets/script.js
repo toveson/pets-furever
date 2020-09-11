@@ -1,5 +1,6 @@
 var rgUrl = "https://test1-api.rescuegroups.org/v5/public/animals/";
 var rgKey = "k4QortUC";
+var dogAPIURL = "https://api.thedogapi.com/v1/breeds?limit=200";
 //search variables
 var breedSelect = $(".breed-select");
 var houseTrainedSelect = $(".house-trained")[0];
@@ -21,13 +22,12 @@ var storedSizeSelect = JSON.parse(localStorage.getItem("size"));
 var storedAgeSelect = JSON.parse(localStorage.getItem("age"));
 var storedDistanceSelect = JSON.parse(localStorage.getItem("distance"));
 // GRAB API RESPONSES
-breedAPICall();
 atRiskAPICall();
 userSearchAPICall();
 // POPULATE RESPONSE FOR BREED SELECTION
 function breedAPICall() {
 	$.ajax({
-		url: rgUrl + "species/8/breeds/?limit=300",
+		url: dogAPIURL,
 		method: "GET",
 		headers: {
 			"Content-Type": "application/vnd.api+json",
@@ -35,6 +35,18 @@ function breedAPICall() {
 		},
 	}).then(function(response) {
 		breedPop(response);
+	});
+}
+function breedCardAPICall() {
+	$.ajax({
+		url: dogAPIURL,
+		method: "GET",
+		headers: {
+			"Content-Type": "application/vnd.api+json",
+			"Authorization": rgKey,
+		},
+	}).then(function(response) {
+		createBreedCard(response);
 	});
 }
 // POPULATE RESPONSE FOR DOG SELECTION
@@ -117,7 +129,8 @@ function userSearchAPICall() {
 			"operation": "equal",
 			"criteria": storedKidsOkSelect
 		};
-	}
+		filters.push(kidsOkCriteria);
+	}	
 	if (storedGenderSelect !== null) {
 		genderCriteria = {
 			"fieldName": "animals.sex",
@@ -169,8 +182,6 @@ function userSearchAPICall() {
 		} else {
 			userInputAnimalSearch(response);
 		}
-	console.log(response);
-		
 	});
 }
 // CREATES IMAGE CAROUSEL FOR AT RISK DOGS
@@ -195,8 +206,10 @@ function atRiskPets(response) {
 }
 // POPULATES BREED OPTIONS
 function breedPop (response, breedOp, breedOpEl) {
-	for(var i = 0; i < response.data.length; i++) {
-		breedOp = response.data[i].attributes.name;
+	for(var i = 0; i < response.length; i++) {
+		breedOp = response[i].name;
+		breedID = response[i].id;
+		localStorage.setItem("breed-id-"  + '"' + breedOp + '"', breedID);
 		breedOpEl = $("<option></option>");
 		breedOpEl.text(breedOp);
 		$(".breed-select").append(breedOpEl);
@@ -210,9 +223,12 @@ function onlyCheckUserSelect(checkedGroup, checkbox) {
 	}
 }
 // STORES USER INPUT FOR BREED
-function storeBreedSelect() {
-	var userBreedSelect = breedSelect[0].value;
-	localStorage.setItem("breed", JSON.stringify(userBreedSelect));
+function storeBreedSelect(userBreedSelect, breedOp) {
+	if (breedSelect[0].value !== "Click for breeds") {
+		var userBreedSelect = breedSelect[0].value;
+		localStorage.setItem("breed", JSON.stringify(userBreedSelect));	
+	}
+	breedCardAPICall()
 }
 // STORES USER INPUT FOR HOUSE TRAINING
 function storeHouseTrainedSelect(userClick) {
@@ -324,6 +340,7 @@ function userInputAnimalSearch(response) {
 		descriptionContainer.append(dogDescriptionEl);
 	}
 	clearLocalStorage();
+	breedAPICall();
 }
 function noDogFound() {
 	var cardContainer = $(".dog-card-container");
@@ -349,6 +366,34 @@ function noDogFound() {
 function clearLocalStorage() {
 	localStorage.clear();
 }
+function createBreedCard(response) {
+	if (storedBreedSelect !== undefined) {
+		var breed = localStorage.getItem('breed')
+		console.log(breed)
+		var i = parseInt(localStorage.getItem('breed-id-' + breed));
+		console.log(i)
+		var breedResponse = response;
+		var breedName = breedResponse[i].name;
+		var bredFor = breedResponse[i].bred_for;
+		var lifeSpan = breedResponse[i].life_span;
+		var temperament = breedResponse[i].temperament;
+		var petCard = $(".pet-card");
+		var breedInfoEl = $("<div></div>");
+		var breedNameEl = $("<p></p>");
+		var bredForEl = $("<p></p>");
+		var lifeSpanEl = $("<p></p>");
+		var temperamentEl = $("<p></p>");
+		console.dir(petCard.text())
+		petCard.text("");
+		breedNameEl.text("About The " + breedName);
+		bredForEl.text("Bred For: " + bredFor);
+		lifeSpanEl.text("Life Span: " + lifeSpan);
+		temperamentEl.text("Temperament: " + temperament);
+		console.log(bredForEl, lifeSpanEl, temperament)
+		petCard.append(breedInfoEl);
+		breedInfoEl.append(breedNameEl, bredForEl, lifeSpanEl, temperament);
+	}
+}		
 // ***** EVENT LISTENERS *****
 // STORES USER BREED SELECTION
 breedSelect.on("click", function() {
